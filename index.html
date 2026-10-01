@@ -7,12 +7,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Hetal Gala | Makeup Artist, Hair Stylist & Saree Draping</title>
+<title>Hetal Gala | Luxury Makeup Artistry & Beauty Styling</title>
 
 <meta name="description"
-content="Hetal Gala is a professional makeup artist, hair stylist and saree draping artist for bridal, wedding, engagement, events, fashion, modelling and photoshoots.">
+content="Hetal Gala is a luxury makeup artist, hair stylist and saree draping specialist for bridal, wedding, engagement, events, fashion, modelling and editorial shoots.">
 
-<meta name="theme-color" content="#f8f4ef">
+<meta name="theme-color" content="#0a0908">
 
 
 <!-- GOOGLE FONTS -->
@@ -22,37 +22,37 @@ content="Hetal Gala is a professional makeup artist, hair stylist and saree drap
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link
-href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Italiana&display=swap"
+href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap"
 rel="stylesheet">
 
 
 <style>
 
 /* =========================================================
-   GLOBAL
+   LUXURY DESIGN SYSTEM
 ========================================================= */
 
 :root{
 
---bg:#f8f4ef;
---bg-soft:#efe6dc;
---white:#ffffff;
+--bg:#0a0908;
+--bg-elevated:#141210;
+--bg-card:#1a1714;
+--cream:#f5f0e8;
+--cream-dim:#e8e0d4;
+--gold:#c9a227;
+--gold-light:#e6c87a;
+--gold-dark:#8b6914;
+--rose:#d4a574;
+--text-primary:#f5f0e8;
+--text-secondary:#a89f94;
+--text-muted:#6b6560;
 
---dark:#191714;
---dark2:#11100e;
+--serif:'Cormorant Garamond',serif;
+--sans:'Inter',sans-serif;
 
---text:#5f5952;
-
---gold:#b28b5d;
---gold-light:#e7c69d;
---gold-dark:#8f6940;
-
---border:rgba(25,23,20,.12);
-
---serif:'Italiana',serif;
---sans:'DM Sans',sans-serif;
-
---container:1280px;
+--container:1400px;
+--ease-out:cubic-bezier(0.16,1,0.3,1);
+--ease-luxury:cubic-bezier(0.22,1,0.36,1);
 
 }
 
@@ -79,9 +79,13 @@ font-family:var(--sans);
 
 background:var(--bg);
 
-color:var(--dark);
+color:var(--text-primary);
 
 overflow-x:hidden;
+
+line-height:1.6;
+
+-webkit-font-smoothing:antialiased;
 
 }
 
@@ -113,6 +117,7 @@ color:inherit;
 button{
 
 font:inherit;
+cursor:pointer;
 
 }
 
@@ -120,7 +125,7 @@ font:inherit;
 ::selection{
 
 background:var(--gold);
-color:white;
+color:var(--bg);
 
 }
 
@@ -134,144 +139,73 @@ margin:auto;
 
 
 /* =========================================================
-   LOADER
+   CURSOR
 ========================================================= */
 
-.loader{
+.cursor-dot{
 
 position:fixed;
-inset:0;
 
-z-index:99999;
-
-background:#161411;
-
-display:flex;
-
-align-items:center;
-justify-content:center;
-
-transition:
-
-opacity .9s ease,
-visibility .9s ease;
-
-}
-
-
-.loader.hide{
-
-opacity:0;
-visibility:hidden;
-
-}
-
-
-.loader-inner{
-
-text-align:center;
-color:white;
-
-}
-
-
-.loader-logo{
-
-font-family:var(--serif);
-
-font-size:clamp(42px,7vw,90px);
-
-letter-spacing:6px;
-
-opacity:0;
-
-transform:translateY(20px);
-
-animation:
-
-loaderLogo
-1.1s
-ease
-forwards;
-
-}
-
-
-.loader-sub{
-
-font-size:8px;
-
-letter-spacing:6px;
-
-text-transform:uppercase;
-
-color:var(--gold-light);
-
-margin-top:18px;
-
-opacity:0;
-
-animation:
-
-loaderSub
-.8s
-.5s
-ease
-forwards;
-
-}
-
-
-.loader-line{
-
-width:0;
-
-height:1px;
+width:8px;
+height:8px;
 
 background:var(--gold);
 
-margin:25px auto 0;
+border-radius:50%;
 
-animation:
+pointer-events:none;
 
-loaderLine
-1.4s
-.2s
-ease
-forwards;
+z-index:10000;
 
-}
+transform:translate(-50%,-50%);
 
+transition:transform 0.15s ease;
 
-@keyframes loaderLogo{
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
+mix-blend-mode:difference;
 
 }
 
 
-@keyframes loaderSub{
+.cursor-ring{
 
-to{
+position:fixed;
 
-opacity:1;
+width:40px;
+height:40px;
+
+border:1px solid rgba(201,162,39,0.5);
+
+border-radius:50%;
+
+pointer-events:none;
+
+z-index:9999;
+
+transform:translate(-50%,-50%);
+
+transition:all 0.3s var(--ease-out);
 
 }
 
+
+.cursor-ring.hovered{
+
+width:80px;
+height:80px;
+
+background:rgba(201,162,39,0.1);
+
+border-color:var(--gold);
+
 }
 
 
-@keyframes loaderLine{
+@media (hover: none) {
 
-to{
+.cursor-dot,
+.cursor-ring{
 
-width:130px;
+display:none;
 
 }
 
@@ -279,55 +213,205 @@ width:130px;
 
 
 /* =========================================================
-   HEADER
+   PRELOADER
 ========================================================= */
 
-.header{
+.preloader{
 
 position:fixed;
 
-width:100%;
+inset:0;
+
+z-index:99999;
+
+background:var(--bg);
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+flex-direction:column;
+
+transition:opacity 1s var(--ease-luxury), visibility 1s;
+
+}
+
+
+.preloader.hide{
+
+opacity:0;
+visibility:hidden;
+
+pointer-events:none;
+
+}
+
+
+.preloader-content{
+
+text-align:center;
+
+position:relative;
+
+}
+
+
+.preloader-logo{
+
+font-family:var(--serif);
+
+font-size:clamp(3rem,8vw,6rem);
+
+font-weight:300;
+
+letter-spacing:0.3em;
+
+opacity:0;
+
+animation:preloaderFade 1.5s var(--ease-out) forwards;
+
+background:linear-gradient(135deg, var(--cream) 0%, var(--gold-light) 50%, var(--cream) 100%);
+
+background-size:200% auto;
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+animation:preloaderFade 1s var(--ease-out) forwards, shimmer 3s linear infinite;
+
+}
+
+
+.preloader-sub{
+
+margin-top:1rem;
+
+font-size:0.6rem;
+
+letter-spacing:0.5em;
+
+text-transform:uppercase;
+
+color:var(--gold);
+
+opacity:0;
+
+animation:preloaderFade 1s 0.3s var(--ease-out) forwards;
+
+}
+
+
+.preloader-line{
+
+width:0;
+
+height:1px;
+
+background:linear-gradient(90deg, transparent, var(--gold), transparent);
+
+margin:2rem auto 0;
+
+animation:lineExpand 1.5s 0.5s var(--ease-out) forwards;
+
+}
+
+
+.preloader-counter{
+
+position:absolute;
+
+bottom:-4rem;
+
+left:50%;
+
+transform:translateX(-50%);
+
+font-family:var(--serif);
+
+font-size:0.9rem;
+
+color:var(--text-muted);
+
+letter-spacing:0.2em;
+
+}
+
+
+@keyframes preloaderFade{
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+
+@keyframes lineExpand{
+
+to{
+
+width:200px;
+
+}
+
+}
+
+
+@keyframes shimmer{
+
+to{
+
+background-position:200% center;
+
+}
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav{
+
+position:fixed;
 
 top:0;
 left:0;
 
+width:100%;
+
 z-index:1000;
 
-padding:25px 0;
+padding:2rem 0;
 
-color:white;
+transition:all 0.5s var(--ease-luxury);
 
-transition:
-
-background .4s ease,
-padding .4s ease,
-color .4s ease,
-box-shadow .4s ease;
+mix-blend-mode:difference;
 
 }
 
 
-.header.scrolled{
+.nav.scrolled{
 
-background:rgba(248,244,239,.94);
+padding:1rem 0;
 
-backdrop-filter:blur(18px);
+background:rgba(10,9,8,0.85);
 
--webkit-backdrop-filter:blur(18px);
+backdrop-filter:blur(20px);
 
-color:var(--dark);
+mix-blend-mode:normal;
 
-padding:15px 0;
-
-box-shadow:
-
-0 5px 30px
-rgba(0,0,0,.05);
+border-bottom:1px solid rgba(201,162,39,0.1);
 
 }
 
 
-.nav{
+.nav-inner{
 
 display:flex;
 
@@ -338,13 +422,15 @@ align-items:center;
 }
 
 
-.logo{
+.nav-logo{
 
-display:flex;
+font-family:var(--serif);
 
-flex-direction:column;
+font-size:1.8rem;
 
-line-height:1;
+font-weight:400;
+
+letter-spacing:0.15em;
 
 position:relative;
 
@@ -353,28 +439,11 @@ z-index:1002;
 }
 
 
-.logo-main{
+.nav-logo span{
 
-font-family:var(--serif);
+color:var(--gold);
 
-font-size:30px;
-
-letter-spacing:3px;
-
-}
-
-
-.logo-small{
-
-margin-top:7px;
-
-font-size:8px;
-
-letter-spacing:4px;
-
-text-transform:uppercase;
-
-opacity:.75;
+font-style:italic;
 
 }
 
@@ -383,45 +452,56 @@ opacity:.75;
 
 display:flex;
 
-align-items:center;
-
-gap:35px;
+gap:3rem;
 
 list-style:none;
+
+align-items:center;
 
 }
 
 
 .nav-links a{
 
-position:relative;
+font-size:0.65rem;
 
-font-size:12px;
+letter-spacing:0.2em;
 
 text-transform:uppercase;
 
-letter-spacing:1.8px;
+color:var(--text-secondary);
+
+position:relative;
+
+transition:color 0.3s ease;
 
 }
 
 
-.nav-links a:not(.nav-cta)::after{
+.nav-links a::after{
 
-content:"";
+content:'';
 
 position:absolute;
+
+bottom:-5px;
+
+left:0;
 
 width:0;
 
 height:1px;
 
-left:0;
+background:var(--gold);
 
-bottom:-7px;
+transition:width 0.4s var(--ease-out);
 
-background:currentColor;
+}
 
-transition:width .3s ease;
+
+.nav-links a:hover{
+
+color:var(--cream);
 
 }
 
@@ -435,120 +515,117 @@ width:100%;
 
 .nav-cta{
 
-border:1px solid currentColor;
+border:1px solid var(--gold);
 
-padding:13px 19px;
+padding:0.8rem 1.5rem;
 
-transition:.3s ease;
+color:var(--gold) !important;
 
-}
-
-
-.nav-cta:hover{
-
-background:var(--dark);
-
-color:white;
-
-border-color:var(--dark);
+transition:all 0.4s ease !important;
 
 }
 
 
-.header:not(.scrolled)
-.nav-cta:hover{
-
-background:white;
-
-color:var(--dark);
-
-border-color:white;
-
-}
-
-
-.menu-btn{
+.nav-cta::after{
 
 display:none;
 
-border:0;
+}
+
+
+.nav-cta:hover{
+
+background:var(--gold);
+
+color:var(--bg) !important;
+
+}
+
+
+.menu-toggle{
+
+display:none;
 
 background:none;
 
-width:34px;
+border:none;
 
-height:26px;
+width:30px;
+
+height:20px;
 
 position:relative;
 
 z-index:1002;
 
-cursor:pointer;
-
-color:inherit;
-
 }
 
 
-.menu-btn span{
+.menu-toggle span{
 
 position:absolute;
 
-right:0;
-
-width:28px;
+width:100%;
 
 height:1px;
 
-background:currentColor;
+background:var(--cream);
 
-transition:.3s ease;
-
-}
-
-
-.menu-btn span:nth-child(1){
-
-top:6px;
+transition:all 0.4s var(--ease-out);
 
 }
 
 
-.menu-btn span:nth-child(2){
+.menu-toggle span:nth-child(1){
 
-top:14px;
-
-width:20px;
+top:0;
 
 }
 
 
-.menu-btn.active
-span:nth-child(1){
+.menu-toggle span:nth-child(2){
 
-transform:
+top:50%;
 
-translateY(4px)
-rotate(45deg);
+width:70%;
 
 }
 
 
-.menu-btn.active
-span:nth-child(2){
+.menu-toggle span:nth-child(3){
 
-width:28px;
+top:100%;
 
-transform:
+}
 
-translateY(-4px)
-rotate(-45deg);
+
+.menu-toggle.active span:nth-child(1){
+
+transform:translateY(-50%) rotate(45deg);
+
+top:50%;
+
+}
+
+
+.menu-toggle.active span:nth-child(2){
+
+opacity:0;
+
+}
+
+
+.menu-toggle.active span:nth-child(3){
+
+transform:translateY(-50%) rotate(-45deg);
+
+top:50%;
 
 }
 
 
 /* =========================================================
-   HERO
+   HERO - CINEMATIC
 ========================================================= */
 
 .hero{
@@ -556,28 +633,32 @@ rotate(-45deg);
 position:relative;
 
 min-height:100vh;
-min-height:100svh;
 
 display:flex;
 
-align-items:flex-end;
+align-items:center;
 
 overflow:hidden;
 
-background:#171512;
+background:var(--bg);
 
-color:white;
+}
 
-isolation:isolate;
+
+.hero-video-container{
+
+position:absolute;
+
+inset:0;
+
+z-index:1;
+
+overflow:hidden;
 
 }
 
 
 .hero-video{
-
-position:absolute;
-
-inset:0;
 
 width:100%;
 
@@ -585,37 +666,16 @@ height:100%;
 
 object-fit:cover;
 
-z-index:-5;
+filter:brightness(0.4) contrast(1.1) saturate(0.8);
 
+transform:scale(1.1);
 
-/*
-   THIS MAKES VIDEO SOFTER
-*/
-
-filter:
-
-brightness(.60)
-contrast(.90)
-saturate(.76);
-
-
-animation:
-
-heroScale
-15s
-ease-out
-forwards;
+animation:heroVideoScale 2s var(--ease-out) forwards;
 
 }
 
 
-@keyframes heroScale{
-
-from{
-
-transform:scale(1.08);
-
-}
+@keyframes heroVideoScale{
 
 to{
 
@@ -626,715 +686,7 @@ transform:scale(1);
 }
 
 
-/* cinematic overlay */
-
 .hero-overlay{
-
-position:absolute;
-
-inset:0;
-
-z-index:-4;
-
-background:
-
-radial-gradient(
-
-circle at 70% 38%,
-
-rgba(229,196,158,.10),
-
-transparent 35%
-
-),
-
-linear-gradient(
-
-90deg,
-
-rgba(10,8,6,.80) 0%,
-
-rgba(10,8,6,.60) 35%,
-
-rgba(10,8,6,.38) 68%,
-
-rgba(10,8,6,.48) 100%
-
-),
-
-linear-gradient(
-
-0deg,
-
-rgba(8,6,5,.85) 0%,
-
-rgba(8,6,5,.10) 65%,
-
-rgba(8,6,5,.28) 100%
-
-);
-
-}
-
-
-/* BEAUTY HAZE */
-
-.hero-haze{
-
-position:absolute;
-
-inset:0;
-
-z-index:-3;
-
-pointer-events:none;
-
-background:
-
-radial-gradient(
-
-circle at 15% 75%,
-
-rgba(190,143,97,.18),
-
-transparent 25%
-
-),
-
-radial-gradient(
-
-circle at 82% 20%,
-
-rgba(255,237,215,.08),
-
-transparent 25%
-
-);
-
-mix-blend-mode:screen;
-
-animation:
-
-hazeMove
-10s
-ease-in-out
-infinite
-alternate;
-
-}
-
-
-@keyframes hazeMove{
-
-from{
-
-transform:
-
-translate3d(-2%,1%,0)
-scale(1);
-
-}
-
-to{
-
-transform:
-
-translate3d(2%,-1%,0)
-scale(1.05);
-
-}
-
-}
-
-
-/* =========================================================
-   HERO BEAUTY EFFECTS
-========================================================= */
-
-.beauty-fx{
-
-position:absolute;
-
-inset:0;
-
-z-index:1;
-
-overflow:hidden;
-
-pointer-events:none;
-
-}
-
-
-/* POWDER PARTICLES */
-
-.powder{
-
-position:absolute;
-
-width:var(--size);
-
-height:var(--size);
-
-border-radius:50%;
-
-background:
-
-radial-gradient(
-
-circle,
-
-rgba(255,226,190,.9) 0%,
-
-rgba(214,171,126,.40) 35%,
-
-transparent 72%
-
-);
-
-filter:blur(.4px);
-
-opacity:0;
-
-animation:
-
-powderFloat
-var(--duration)
-linear
-infinite;
-
-animation-delay:var(--delay);
-
-}
-
-
-@keyframes powderFloat{
-
-0%{
-
-opacity:0;
-
-transform:
-
-translate3d(0,70px,0)
-scale(.4);
-
-}
-
-
-12%{
-
-opacity:var(--opacity);
-
-}
-
-
-55%{
-
-opacity:var(--opacity);
-
-transform:
-
-translate3d(
-var(--drift),
--45vh,
-0
-)
-
-scale(1);
-
-}
-
-
-100%{
-
-opacity:0;
-
-transform:
-
-translate3d(
-var(--drift),
--105vh,
-0
-)
-
-scale(.25);
-
-}
-
-}
-
-
-/* POWDER CLOUD */
-
-.powder-cloud{
-
-position:absolute;
-
-width:280px;
-
-height:280px;
-
-border-radius:50%;
-
-background:
-
-radial-gradient(
-
-circle,
-
-rgba(203,155,108,.17),
-
-rgba(180,130,87,.07) 35%,
-
-transparent 70%
-
-);
-
-filter:blur(30px);
-
-opacity:.5;
-
-animation:
-
-cloudFloat
-12s
-ease-in-out
-infinite
-alternate;
-
-}
-
-
-.powder-cloud.one{
-
-left:-3%;
-
-bottom:5%;
-
-}
-
-
-.powder-cloud.two{
-
-right:4%;
-
-top:15%;
-
-width:220px;
-
-height:220px;
-
-animation-delay:-5s;
-
-}
-
-
-@keyframes cloudFloat{
-
-from{
-
-transform:
-
-translate3d(-20px,30px,0)
-scale(.9);
-
-}
-
-to{
-
-transform:
-
-translate3d(40px,-45px,0)
-scale(1.15);
-
-}
-
-}
-
-
-/* =========================================================
-   SPARKLES
-========================================================= */
-
-.beauty-sparkle{
-
-position:absolute;
-
-width:22px;
-
-height:22px;
-
-opacity:0;
-
-animation:
-
-sparkleBeauty
-5s
-ease-in-out
-infinite;
-
-}
-
-
-.beauty-sparkle::before,
-.beauty-sparkle::after{
-
-content:"";
-
-position:absolute;
-
-left:50%;
-top:50%;
-
-background:
-
-linear-gradient(
-
-to bottom,
-
-transparent,
-
-rgba(255,239,216,.95),
-
-transparent
-
-);
-
-transform:
-
-translate(-50%,-50%);
-
-}
-
-
-.beauty-sparkle::before{
-
-width:1px;
-
-height:100%;
-
-}
-
-
-.beauty-sparkle::after{
-
-width:100%;
-
-height:1px;
-
-}
-
-
-.sparkle-one{
-
-left:12%;
-
-top:25%;
-
-}
-
-
-.sparkle-two{
-
-right:13%;
-
-top:20%;
-
-animation-delay:1.6s;
-
-}
-
-
-.sparkle-three{
-
-right:28%;
-
-bottom:20%;
-
-animation-delay:3.2s;
-
-}
-
-
-.sparkle-four{
-
-left:47%;
-
-top:15%;
-
-animation-delay:2.3s;
-
-}
-
-
-@keyframes sparkleBeauty{
-
-0%,
-100%{
-
-opacity:0;
-
-transform:
-
-rotate(0deg)
-scale(.2);
-
-}
-
-
-45%{
-
-opacity:.75;
-
-}
-
-
-55%{
-
-opacity:1;
-
-transform:
-
-rotate(45deg)
-scale(1);
-
-}
-
-
-70%{
-
-opacity:0;
-
-transform:
-
-rotate(90deg)
-scale(.4);
-
-}
-
-}
-
-
-/* =========================================================
-   FLOATING MAKEUP BRUSH
-========================================================= */
-
-.makeup-brush{
-
-position:absolute;
-
-right:4%;
-
-top:28%;
-
-width:210px;
-
-height:60px;
-
-opacity:.13;
-
-transform:
-
-rotate(-28deg);
-
-animation:
-
-floatingBrush
-8s
-ease-in-out
-infinite;
-
-filter:
-
-drop-shadow(
-0 15px 25px
-rgba(0,0,0,.25)
-);
-
-}
-
-
-.brush-handle{
-
-position:absolute;
-
-width:150px;
-
-height:9px;
-
-right:0;
-
-top:25px;
-
-border-radius:20px;
-
-background:
-
-linear-gradient(
-
-90deg,
-
-#6d4a31,
-
-#d6ae79,
-
-#896242
-
-);
-
-}
-
-
-.brush-metal{
-
-position:absolute;
-
-width:38px;
-
-height:19px;
-
-right:142px;
-
-top:20px;
-
-border-radius:4px;
-
-background:
-
-linear-gradient(
-
-90deg,
-
-#756352,
-
-#e4d6c5,
-
-#887462
-
-);
-
-}
-
-
-.brush-head{
-
-position:absolute;
-
-width:52px;
-
-height:44px;
-
-right:172px;
-
-top:7px;
-
-border-radius:
-
-70% 20% 20% 70%;
-
-background:
-
-linear-gradient(
-
-90deg,
-
-#33231c,
-
-#8e6650,
-
-#d4a286
-
-);
-
-filter:blur(.5px);
-
-}
-
-
-@keyframes floatingBrush{
-
-0%,
-100%{
-
-transform:
-
-translate3d(0,0,0)
-rotate(-28deg);
-
-}
-
-
-50%{
-
-transform:
-
-translate3d(-25px,25px,0)
-rotate(-20deg);
-
-}
-
-}
-
-
-/* =========================================================
-   CURSOR GLOW
-========================================================= */
-
-.hero-cursor-glow{
-
-position:absolute;
-
-width:450px;
-
-height:450px;
-
-border-radius:50%;
-
-background:
-
-radial-gradient(
-
-circle,
-
-rgba(213,172,124,.13),
-
-transparent 66%
-
-);
-
-transform:
-
-translate(-50%,-50%);
-
-pointer-events:none;
-
-z-index:0;
-
-opacity:0;
-
-transition:
-
-opacity .4s ease;
-
-mix-blend-mode:screen;
-
-}
-
-
-.hero:hover
-.hero-cursor-glow{
-
-opacity:1;
-
-}
-
-
-/* =========================================================
-   HERO GRAIN
-========================================================= */
-
-.hero-grain{
 
 position:absolute;
 
@@ -1342,108 +694,82 @@ inset:0;
 
 z-index:2;
 
-pointer-events:none;
+background:
 
-opacity:.045;
+linear-gradient(
 
-background-image:
+180deg,
 
-url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+rgba(10,9,8,0.3) 0%,
 
-mix-blend-mode:soft-light;
+rgba(10,9,8,0.6) 50%,
+
+var(--bg) 100%
+
+),
+
+radial-gradient(
+
+circle at 30% 50%,
+
+transparent 0%,
+
+rgba(10,9,8,0.4) 100%
+
+);
 
 }
 
-
-/* =========================================================
-   HERO CONTENT
-========================================================= */
 
 .hero-content{
 
 position:relative;
 
-z-index:5;
+z-index:10;
 
 width:min(92%,var(--container));
 
-margin:auto;
+margin:0 auto;
 
-padding-bottom:
-
-clamp(70px,10vh,125px);
+padding-top:8rem;
 
 }
 
 
-.eyebrow{
+.hero-eyebrow{
 
 display:flex;
 
 align-items:center;
 
-gap:14px;
+gap:1rem;
 
-font-size:10px;
+font-size:0.6rem;
 
-font-weight:500;
-
-letter-spacing:4px;
+letter-spacing:0.4em;
 
 text-transform:uppercase;
 
 color:var(--gold);
 
+margin-bottom:2rem;
+
+opacity:0;
+
+animation:fadeUp 1s 0.5s var(--ease-out) forwards;
+
 }
 
 
-.eyebrow::before{
+.hero-eyebrow::before{
 
-content:"";
+content:'';
 
-width:42px;
+width:50px;
 
 height:1px;
 
-background:currentColor;
-
-}
-
-
-.hero .eyebrow{
-
-color:#e8c89e;
-
-opacity:0;
-
-animation:
-
-heroEyebrow
-.9s
-1.2s
-ease
-forwards;
-
-}
-
-
-@keyframes heroEyebrow{
-
-from{
-
-opacity:0;
-
-transform:translateY(15px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
+background:var(--gold);
 
 }
 
@@ -1452,111 +778,64 @@ transform:translateY(0);
 
 font-family:var(--serif);
 
-font-size:
+font-size:clamp(4rem,12vw,10rem);
 
-clamp(64px,10vw,145px);
+font-weight:300;
 
-font-weight:400;
+line-height:0.9;
 
-line-height:.82;
-
-max-width:1050px;
-
-margin-top:25px;
-
-letter-spacing:-3px;
+letter-spacing:-0.02em;
 
 opacity:0;
 
-animation:
-
-heroTitleIn
-1.2s
-1.4s
-cubic-bezier(.16,.75,.25,1)
-forwards;
-
-transition:
-
-transform .3s ease-out;
+animation:fadeUp 1.2s 0.7s var(--ease-out) forwards;
 
 }
 
 
-@keyframes heroTitleIn{
-
-from{
-
-opacity:0;
-
-transform:translateY(55px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-
-.hero-title span{
+.hero-title .line{
 
 display:block;
 
+overflow:hidden;
+
+}
+
+
+.hero-title .line span{
+
+display:block;
+
+transform:translateY(100%);
+
+animation:lineReveal 1.2s var(--ease-out) forwards;
+
+}
+
+
+.hero-title .line:nth-child(1) span{
+
+animation-delay:0.8s;
+
+}
+
+
+.hero-title .line:nth-child(2) span{
+
+animation-delay:0.9s;
+
 font-style:italic;
 
-color:#e8d5c0;
+color:var(--gold-light);
 
-margin-left:
-
-clamp(30px,8vw,130px);
+margin-left:clamp(2rem,8vw,8rem);
 
 }
 
 
-.hero-bottom{
-
-margin-top:42px;
-
-display:flex;
-
-align-items:center;
-
-gap:35px;
-
-flex-wrap:wrap;
-
-opacity:0;
-
-animation:
-
-heroBottomIn
-1s
-2s
-ease
-forwards;
-
-}
-
-
-@keyframes heroBottomIn{
-
-from{
-
-opacity:0;
-
-transform:translateY(25px);
-
-}
+@keyframes lineReveal{
 
 to{
-
-opacity:1;
 
 transform:translateY(0);
 
@@ -1565,148 +844,286 @@ transform:translateY(0);
 }
 
 
-.hero-copy{
+.hero-subtitle{
 
-max-width:450px;
+max-width:500px;
 
-font-size:15px;
+margin-top:2.5rem;
+
+font-size:0.9rem;
 
 font-weight:300;
 
 line-height:1.8;
 
-color:
+color:var(--text-secondary);
 
-rgba(255,255,255,.76);
+opacity:0;
+
+animation:fadeUp 1s 1.2s var(--ease-out) forwards;
 
 }
 
 
-/* =========================================================
-   BUTTONS
-========================================================= */
+.hero-actions{
+
+display:flex;
+
+gap:1.5rem;
+
+margin-top:3rem;
+
+flex-wrap:wrap;
+
+opacity:0;
+
+animation:fadeUp 1s 1.4s var(--ease-out) forwards;
+
+}
+
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+
+/* BUTTONS */
 
 .btn{
 
-display:inline-flex;
+position:relative;
 
-justify-content:center;
+display:inline-flex;
 
 align-items:center;
 
-gap:12px;
+gap:0.8rem;
 
-min-height:53px;
+padding:1.1rem 2.5rem;
 
-padding:0 25px;
+font-size:0.65rem;
 
-border:
-
-1px solid
-var(--dark);
+letter-spacing:0.25em;
 
 text-transform:uppercase;
 
-letter-spacing:2px;
+border:1px solid var(--gold);
 
-font-size:10px;
+overflow:hidden;
 
-transition:.35s ease;
+transition:all 0.4s var(--ease-out);
 
-cursor:pointer;
+background:transparent;
 
-}
-
-
-.btn-dark{
-
-background:var(--dark);
-
-color:white;
+color:var(--cream);
 
 }
 
 
-.btn-dark:hover{
+.btn::before{
 
-background:var(--gold-dark);
+content:'';
 
-border-color:var(--gold-dark);
+position:absolute;
 
-transform:translateY(-3px);
+inset:0;
 
-box-shadow:
+background:var(--gold);
 
-0 15px 30px
-rgba(0,0,0,.12);
+transform:scaleX(0);
 
-}
+transform-origin:right;
 
+transition:transform 0.4s var(--ease-out);
 
-.btn-light{
-
-border-color:
-
-rgba(255,255,255,.65);
-
-color:white;
+z-index:0;
 
 }
 
 
-.btn-light:hover{
+.btn:hover::before{
 
-background:white;
+transform:scaleX(1);
 
-color:var(--dark);
-
-transform:translateY(-3px);
+transform-origin:left;
 
 }
 
 
-/* =========================================================
-   SCROLL INDICATOR
-========================================================= */
+.btn:hover{
+
+color:var(--bg);
+
+}
+
+
+.btn span{
+
+position:relative;
+
+z-index:1;
+
+}
+
+
+.btn-solid{
+
+background:var(--gold);
+
+color:var(--bg);
+
+}
+
+
+.btn-solid::before{
+
+background:var(--cream);
+
+}
+
+
+/* HERO PARTICLES */
+
+.hero-particles{
+
+position:absolute;
+
+inset:0;
+
+z-index:5;
+
+pointer-events:none;
+
+overflow:hidden;
+
+}
+
+
+.particle{
+
+position:absolute;
+
+width:var(--size);
+
+height:var(--size);
+
+background:radial-gradient(circle, var(--gold-light) 0%, transparent 70%);
+
+border-radius:50%;
+
+opacity:0;
+
+animation:particleFloat var(--duration) linear infinite;
+
+animation-delay:var(--delay);
+
+filter:blur(1px);
+
+}
+
+
+@keyframes particleFloat{
+
+0%{
+
+opacity:0;
+
+transform:translateY(100vh) scale(0);
+
+}
+
+10%{
+
+opacity:var(--opacity);
+
+}
+
+90%{
+
+opacity:var(--opacity);
+
+}
+
+100%{
+
+opacity:0;
+
+transform:translateY(-100vh) scale(1);
+
+}
+
+}
+
+
+/* SCROLL INDICATOR */
 
 .scroll-indicator{
 
 position:absolute;
 
-z-index:6;
+bottom:3rem;
 
-right:4%;
+left:50%;
 
-bottom:50px;
+transform:translateX(-50%);
+
+z-index:10;
 
 display:flex;
 
+flex-direction:column;
+
 align-items:center;
 
-gap:14px;
+gap:1rem;
 
-font-size:9px;
+opacity:0;
 
-letter-spacing:3px;
+animation:fadeIn 1s 2s forwards;
+
+}
+
+
+.scroll-text{
+
+font-size:0.5rem;
+
+letter-spacing:0.4em;
 
 text-transform:uppercase;
 
-transform:rotate(90deg);
+color:var(--text-muted);
 
-transform-origin:right center;
+writing-mode:vertical-rl;
 
 }
 
 
 .scroll-line{
 
-width:50px;
+width:1px;
 
-height:1px;
+height:60px;
 
-background:
+background:rgba(201,162,39,0.2);
 
-rgba(255,255,255,.6);
+position:relative;
 
 overflow:hidden;
 
@@ -1715,42 +1132,53 @@ overflow:hidden;
 
 .scroll-line::after{
 
-content:"";
+content:'';
 
-display:block;
+position:absolute;
+
+top:0;
+
+left:0;
 
 width:100%;
 
 height:100%;
 
-background:white;
+background:var(--gold);
 
-transform:
-
-translateX(-100%);
-
-animation:
-
-scrollLine
-2s
-infinite
-ease-in-out;
+animation:scrollDown 2s var(--ease-out) infinite;
 
 }
 
 
-@keyframes scrollLine{
+@keyframes scrollDown{
 
 0%{
 
-transform:translateX(-100%);
+transform:translateY(-100%);
 
 }
 
-50%,
+50%{
+
+transform:translateY(0);
+
+}
+
 100%{
 
-transform:translateX(100%);
+transform:translateY(100%);
+
+}
+
+}
+
+
+@keyframes fadeIn{
+
+to{
+
+opacity:1;
 
 }
 
@@ -1761,15 +1189,17 @@ transform:translateX(100%);
    MARQUEE
 ========================================================= */
 
-.marquee{
+.marquee-section{
+
+padding:3rem 0;
+
+border-top:1px solid rgba(201,162,39,0.1);
+
+border-bottom:1px solid rgba(201,162,39,0.1);
 
 overflow:hidden;
 
-background:var(--dark);
-
-color:#eee2d4;
-
-padding:20px 0;
+background:var(--bg-elevated);
 
 }
 
@@ -1780,47 +1210,46 @@ display:flex;
 
 width:max-content;
 
-animation:
-
-marquee
-28s
-linear
-infinite;
+animation:marquee 30s linear infinite;
 
 }
 
 
-.marquee-group{
+.marquee-content{
 
 display:flex;
 
 align-items:center;
 
-flex-shrink:0;
+gap:4rem;
+
+padding-right:4rem;
 
 }
 
 
 .marquee-item{
 
-white-space:nowrap;
-
 font-family:var(--serif);
 
-font-size:18px;
+font-size:1.5rem;
 
-letter-spacing:2px;
+font-weight:300;
 
-margin:0 30px;
+letter-spacing:0.1em;
+
+color:var(--text-secondary);
+
+white-space:nowrap;
 
 }
 
 
-.marquee-dot{
+.marquee-item.gold{
 
 color:var(--gold);
 
-font-size:16px;
+font-style:italic;
 
 }
 
@@ -1829,9 +1258,7 @@ font-size:16px;
 
 to{
 
-transform:
-
-translateX(-50%);
+transform:translateX(-50%);
 
 }
 
@@ -1839,155 +1266,37 @@ translateX(-50%);
 
 
 /* =========================================================
-   GENERAL
-========================================================= */
-
-.section{
-
-padding:
-
-clamp(90px,11vw,160px)
-0;
-
-}
-
-
-.section-heading{
-
-font-family:var(--serif);
-
-font-weight:400;
-
-font-size:
-
-clamp(48px,7vw,95px);
-
-line-height:.95;
-
-letter-spacing:-2px;
-
-}
-
-
-.section-heading em{
-
-font-weight:400;
-
-color:var(--gold-dark);
-
-}
-
-
-.section-copy{
-
-color:var(--text);
-
-font-size:14px;
-
-line-height:1.9;
-
-}
-
-
-/* =========================================================
-   REVEALS
-========================================================= */
-
-.reveal{
-
-opacity:0;
-
-transform:
-
-translateY(50px);
-
-transition:
-
-opacity 1s
-cubic-bezier(.2,.7,.2,1),
-
-transform 1s
-cubic-bezier(.2,.7,.2,1);
-
-}
-
-
-.reveal.active{
-
-opacity:1;
-
-transform:
-
-translateY(0);
-
-}
-
-
-.reveal-left{
-
-opacity:0;
-
-transform:
-
-translateX(-60px);
-
-transition:
-
-opacity 1.1s ease,
-
-transform 1.1s
-cubic-bezier(.2,.7,.2,1);
-
-}
-
-
-.reveal-left.active{
-
-opacity:1;
-
-transform:
-
-translateX(0);
-
-}
-
-
-.reveal-right{
-
-opacity:0;
-
-transform:
-
-translateX(60px);
-
-transition:
-
-opacity 1.1s ease,
-
-transform 1.1s
-cubic-bezier(.2,.7,.2,1);
-
-}
-
-
-.reveal-right.active{
-
-opacity:1;
-
-transform:
-
-translateX(0);
-
-}
-
-
-/* =========================================================
-   ABOUT
+   ABOUT - EDITORIAL
 ========================================================= */
 
 .about{
 
+padding:clamp(6rem,10vw,10rem) 0;
+
+position:relative;
+
 overflow:hidden;
+
+}
+
+
+.about::before{
+
+content:'';
+
+position:absolute;
+
+top:20%;
+
+right:-10%;
+
+width:600px;
+
+height:600px;
+
+background:radial-gradient(circle, rgba(201,162,39,0.05) 0%, transparent 70%);
+
+border-radius:50%;
 
 }
 
@@ -1996,60 +1305,31 @@ overflow:hidden;
 
 display:grid;
 
-grid-template-columns:
+grid-template-columns:1fr 1fr;
 
-.9fr 1.1fr;
-
-gap:
-
-clamp(50px,9vw,130px);
+gap:clamp(4rem,8vw,8rem);
 
 align-items:center;
+
+position:relative;
 
 }
 
 
-.about-image-wrap{
+.about-image-wrapper{
 
 position:relative;
-
-max-width:530px;
 
 }
 
 
 .about-image{
 
-height:680px;
+position:relative;
 
 overflow:hidden;
 
-position:relative;
-
-}
-
-
-.about-image::after{
-
-content:"";
-
-position:absolute;
-
-inset:0;
-
-background:
-
-linear-gradient(
-
-0deg,
-
-rgba(36,24,16,.15),
-
-transparent 45%
-
-);
-
-pointer-events:none;
+aspect-ratio:3/4;
 
 }
 
@@ -2058,297 +1338,415 @@ pointer-events:none;
 
 width:100%;
 
-height:115%;
+height:100%;
 
 object-fit:cover;
 
-transform:
+transition:transform 1s var(--ease-out);
 
-translateY(-7%);
-
-transition:
-
-transform .2s linear;
+filter:grayscale(20%) contrast(1.05);
 
 }
 
 
-.about-number{
+.about-image:hover img{
+
+transform:scale(1.05);
+
+filter:grayscale(0%) contrast(1);
+
+}
+
+
+.about-image::after{
+
+content:'';
 
 position:absolute;
 
-right:-35px;
+inset:0;
 
-bottom:-35px;
+background:linear-gradient(180deg, transparent 50%, rgba(10,9,8,0.4) 100%);
 
-width:145px;
+}
 
-height:145px;
+
+.about-frame{
+
+position:absolute;
+
+top:-20px;
+
+left:-20px;
+
+width:100%;
+
+height:100%;
+
+border:1px solid var(--gold);
+
+z-index:-1;
+
+opacity:0.3;
+
+}
+
+
+.about-badge{
+
+position:absolute;
+
+bottom:-30px;
+
+right:-30px;
+
+width:150px;
+
+height:150px;
+
+background:var(--gold);
 
 border-radius:50%;
-
-background:var(--dark);
-
-color:white;
 
 display:flex;
 
 align-items:center;
-
 justify-content:center;
 
 text-align:center;
 
-font-size:9px;
+font-size:0.55rem;
 
-letter-spacing:2px;
+letter-spacing:0.2em;
 
 text-transform:uppercase;
 
-line-height:1.7;
+color:var(--bg);
 
-box-shadow:
+line-height:1.6;
 
-0 15px 40px
-rgba(0,0,0,.16);
+font-weight:500;
 
-animation:
-
-badgeFloat
-5s
-ease-in-out
-infinite;
+animation:rotate 20s linear infinite;
 
 }
 
 
-@keyframes badgeFloat{
+@keyframes rotate{
 
-0%,
-100%{
+to{
 
-transform:
-
-translateY(0);
-
-}
-
-50%{
-
-transform:
-
-translateY(-12px);
+transform:rotate(360deg);
 
 }
 
 }
 
 
-.about-content
-.section-heading{
+.about-content .section-label{
 
-margin:
+color:var(--gold);
 
-22px 0 30px;
+font-size:0.6rem;
 
-}
+letter-spacing:0.4em;
 
+text-transform:uppercase;
 
-.about-content
-.section-copy{
+margin-bottom:1.5rem;
 
-max-width:550px;
-
-}
-
-
-.about-content
-.btn{
-
-margin-top:35px;
+display:block;
 
 }
 
 
-.signature{
-
-margin-top:38px;
+.about-title{
 
 font-family:var(--serif);
 
-font-size:31px;
+font-size:clamp(2.5rem,5vw,4rem);
+
+font-weight:300;
+
+line-height:1.1;
+
+margin-bottom:2rem;
+
+}
+
+
+.about-title em{
+
+color:var(--gold-light);
 
 font-style:italic;
 
-color:var(--gold-dark);
+}
+
+
+.about-text{
+
+color:var(--text-secondary);
+
+font-size:0.95rem;
+
+line-height:1.9;
+
+margin-bottom:2rem;
+
+font-weight:300;
+
+}
+
+
+.about-stats{
+
+display:flex;
+
+gap:3rem;
+
+margin-top:3rem;
+
+padding-top:3rem;
+
+border-top:1px solid rgba(201,162,39,0.1);
+
+}
+
+
+.stat-item{
+
+text-align:left;
+
+}
+
+
+.stat-number{
+
+font-family:var(--serif);
+
+font-size:2.5rem;
+
+color:var(--gold);
+
+display:block;
+
+line-height:1;
+
+}
+
+
+.stat-label{
+
+font-size:0.6rem;
+
+letter-spacing:0.2em;
+
+text-transform:uppercase;
+
+color:var(--text-muted);
+
+margin-top:0.5rem;
+
+display:block;
 
 }
 
 
 /* =========================================================
-   SERVICES
+   SERVICES - INTERACTIVE LIST
 ========================================================= */
 
 .services{
 
-background:#1b1916;
+padding:clamp(6rem,10vw,10rem) 0;
 
-color:white;
-
-overflow:hidden;
+background:var(--bg-elevated);
 
 position:relative;
-
-}
-
-
-.services::before{
-
-content:"";
-
-position:absolute;
-
-width:500px;
-
-height:500px;
-
-border-radius:50%;
-
-right:-220px;
-
-top:-220px;
-
-background:
-
-radial-gradient(
-
-circle,
-
-rgba(178,139,93,.14),
-
-transparent 70%
-
-);
 
 }
 
 
 .services-header{
 
-display:grid;
+margin-bottom:5rem;
 
-grid-template-columns:
+display:flex;
 
-1fr .55fr;
+justify-content:space-between;
 
-gap:50px;
+align-items:flex-end;
 
-align-items:end;
+gap:4rem;
 
-margin-bottom:70px;
+flex-wrap:wrap;
 
 }
 
 
-.services-header
-.section-copy{
+.services-title{
 
-color:
+font-family:var(--serif);
 
-rgba(255,255,255,.55);
+font-size:clamp(3rem,6vw,5rem);
+
+font-weight:300;
+
+line-height:1;
+
+}
+
+
+.services-title em{
+
+color:var(--gold);
+
+font-style:italic;
+
+}
+
+
+.services-subtitle{
+
+max-width:400px;
+
+color:var(--text-secondary);
+
+font-size:0.9rem;
+
+line-height:1.8;
 
 }
 
 
 .services-list{
 
-border-top:
-
-1px solid
-rgba(255,255,255,.15);
+border-top:1px solid rgba(201,162,39,0.1);
 
 }
 
 
-.service{
+.service-item{
+
+position:relative;
+
+border-bottom:1px solid rgba(201,162,39,0.1);
+
+cursor:pointer;
+
+overflow:hidden;
+
+}
+
+
+.service-bg{
+
+position:absolute;
+
+inset:0;
+
+background:linear-gradient(90deg, rgba(201,162,39,0.05) 0%, transparent 100%);
+
+opacity:0;
+
+transition:opacity 0.5s ease;
+
+}
+
+
+.service-item:hover .service-bg{
+
+opacity:1;
+
+}
+
+
+.service-content{
 
 position:relative;
 
 display:grid;
 
-grid-template-columns:
-
-80px 1fr auto;
+grid-template-columns:100px 1fr auto;
 
 align-items:center;
 
-gap:20px;
+gap:2rem;
 
-padding:
+padding:2.5rem 0;
 
-34px 10px;
-
-border-bottom:
-
-1px solid
-rgba(255,255,255,.15);
-
-transition:
-
-padding .35s ease,
-background .35s ease;
+transition:transform 0.5s var(--ease-out);
 
 }
 
 
-.service:hover{
+.service-item:hover .service-content{
 
-padding-left:25px;
-
-background:
-
-rgba(255,255,255,.025);
+transform:translateX(20px);
 
 }
 
 
-.service-num{
-
-color:var(--gold);
-
-font-size:10px;
-
-letter-spacing:2px;
-
-}
-
-
-.service-title{
+.service-number{
 
 font-family:var(--serif);
 
-font-size:
+font-size:1rem;
 
-clamp(28px,4vw,50px);
+color:var(--gold);
 
-font-weight:400;
-
-transition:
-
-transform .35s ease,
-color .35s ease;
+opacity:0.5;
 
 }
 
 
-.service:hover
-.service-title{
+.service-name{
 
-transform:
+font-family:var(--serif);
 
-translateX(10px);
+font-size:clamp(1.5rem,3vw,2.5rem);
 
-color:#ead4b9;
+font-weight:300;
+
+transition:color 0.3s ease;
+
+}
+
+
+.service-item:hover .service-name{
+
+color:var(--gold-light);
+
+}
+
+
+.service-desc{
+
+position:absolute;
+
+left:100px;
+
+bottom:1rem;
+
+font-size:0.75rem;
+
+color:var(--text-muted);
+
+opacity:0;
+
+transform:translateY(10px);
+
+transition:all 0.4s ease;
+
+}
+
+
+.service-item:hover .service-desc{
+
+opacity:1;
+
+transform:translateY(0);
 
 }
 
@@ -2359,81 +1757,93 @@ width:50px;
 
 height:50px;
 
-border:
-
-1px solid
-rgba(255,255,255,.25);
+border:1px solid rgba(201,162,39,0.3);
 
 border-radius:50%;
 
-display:grid;
+display:flex;
 
-place-items:center;
+align-items:center;
+justify-content:center;
 
-transition:.35s ease;
+transition:all 0.4s var(--ease-out);
+
+color:var(--gold);
 
 }
 
 
-.service:hover
-.service-arrow{
+.service-item:hover .service-arrow{
 
-background:white;
+background:var(--gold);
 
-color:var(--dark);
+color:var(--bg);
 
-transform:
+transform:rotate(-45deg);
 
-rotate(-45deg);
+border-color:var(--gold);
 
 }
 
 
 /* =========================================================
-   PORTFOLIO
+   PORTFOLIO - HORIZONTAL SCROLL
 ========================================================= */
+
+.portfolio{
+
+padding:clamp(6rem,10vw,10rem) 0;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
 
 .portfolio-header{
 
-display:flex;
+text-align:center;
 
-justify-content:space-between;
-
-gap:40px;
-
-align-items:flex-end;
-
-margin-bottom:55px;
+margin-bottom:4rem;
 
 }
 
 
-.portfolio-header
-.section-heading{
+.portfolio-title{
 
-max-width:700px;
+font-family:var(--serif);
+
+font-size:clamp(3rem,6vw,5rem);
+
+font-weight:300;
 
 }
 
 
-.gallery-grid{
+.portfolio-title em{
+
+color:var(--gold);
+
+font-style:italic;
+
+}
+
+
+.portfolio-grid{
 
 display:grid;
 
-grid-template-columns:
+grid-template-columns:repeat(12,1fr);
 
-1.1fr .8fr 1.1fr;
+gap:1.5rem;
 
-grid-template-rows:
-
-320px 320px;
-
-gap:15px;
+margin-top:4rem;
 
 }
 
 
-.gallery-card{
+.portfolio-item{
 
 position:relative;
 
@@ -2441,32 +1851,48 @@ overflow:hidden;
 
 cursor:pointer;
 
-background:#ddd;
+background:var(--bg-card);
 
 }
 
 
-.gallery-card:nth-child(1){
+.portfolio-item:nth-child(1){
 
-grid-row:
+grid-column:span 7;
 
-1 / 3;
-
-}
-
-
-.gallery-card:nth-child(4){
-
-grid-column:3;
-
-grid-row:
-
-1 / 3;
+aspect-ratio:16/10;
 
 }
 
 
-.gallery-card img{
+.portfolio-item:nth-child(2){
+
+grid-column:span 5;
+
+aspect-ratio:4/5;
+
+}
+
+
+.portfolio-item:nth-child(3){
+
+grid-column:span 5;
+
+aspect-ratio:4/5;
+
+}
+
+
+.portfolio-item:nth-child(4){
+
+grid-column:span 7;
+
+aspect-ratio:16/10;
+
+}
+
+
+.portfolio-item img{
 
 width:100%;
 
@@ -2474,424 +1900,467 @@ height:100%;
 
 object-fit:cover;
 
-transition:
+transition:transform 1.2s var(--ease-out);
 
-transform
-1.1s
-cubic-bezier(.2,.7,.2,1),
-
-filter .6s ease;
+filter:brightness(0.8);
 
 }
 
 
-.gallery-card:hover img{
+.portfolio-item:hover img{
 
-transform:
+transform:scale(1.08);
 
-scale(1.08);
-
-filter:
-
-brightness(.85);
+filter:brightness(1);
 
 }
 
 
-.gallery-overlay{
+.portfolio-overlay{
 
 position:absolute;
 
 inset:0;
 
-background:
+background:linear-gradient(180deg, transparent 40%, rgba(10,9,8,0.9) 100%);
 
-linear-gradient(
+opacity:0;
 
-0deg,
+transition:opacity 0.5s ease;
 
-rgba(0,0,0,.68),
+display:flex;
 
-transparent 65%
+align-items:flex-end;
 
-);
-
-opacity:.75;
-
-transition:.4s ease;
+padding:2rem;
 
 }
 
 
-.gallery-card:hover
-.gallery-overlay{
+.portfolio-item:hover .portfolio-overlay{
 
 opacity:1;
 
 }
 
 
-.gallery-info{
+.portfolio-info{
 
-position:absolute;
+transform:translateY(20px);
 
-bottom:25px;
-
-left:25px;
-
-color:white;
-
-transform:
-
-translateY(8px);
-
-transition:.4s ease;
+transition:transform 0.5s var(--ease-out);
 
 }
 
 
-.gallery-card:hover
-.gallery-info{
+.portfolio-item:hover .portfolio-info{
 
-transform:
-
-translateY(0);
+transform:translateY(0);
 
 }
 
 
-.gallery-category{
+.portfolio-category{
 
-font-size:9px;
+font-size:0.55rem;
+
+letter-spacing:0.3em;
 
 text-transform:uppercase;
 
-letter-spacing:3px;
+color:var(--gold);
 
-color:#e5c29b;
+margin-bottom:0.5rem;
 
-margin-bottom:7px;
+display:block;
 
 }
 
 
-.gallery-title{
+.portfolio-name{
 
 font-family:var(--serif);
 
-font-size:27px;
+font-size:1.8rem;
 
-}
-
-
-.portfolio-button{
-
-text-align:center;
-
-margin-top:50px;
+font-weight:300;
 
 }
 
 
 /* =========================================================
-   OCCASION
+   EXPERIENCE - TIMELINE
 ========================================================= */
 
-.occasion{
+.experience{
+
+padding:clamp(6rem,10vw,10rem) 0;
+
+background:var(--bg-elevated);
 
 position:relative;
 
-min-height:720px;
+}
 
-display:flex;
+
+.experience-header{
+
+text-align:center;
+
+margin-bottom:6rem;
+
+}
+
+
+.experience-title{
+
+font-family:var(--serif);
+
+font-size:clamp(2.5rem,5vw,4rem);
+
+font-weight:300;
+
+}
+
+
+.experience-title em{
+
+color:var(--gold);
+
+font-style:italic;
+
+}
+
+
+.timeline{
+
+position:relative;
+
+max-width:1000px;
+
+margin:0 auto;
+
+}
+
+
+.timeline::before{
+
+content:'';
+
+position:absolute;
+
+left:50%;
+
+top:0;
+
+bottom:0;
+
+width:1px;
+
+background:linear-gradient(180deg, transparent, var(--gold), transparent);
+
+transform:translateX(-50%);
+
+}
+
+
+.timeline-item{
+
+position:relative;
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:4rem;
+
+margin-bottom:4rem;
 
 align-items:center;
 
-background:
+}
 
-linear-gradient(
 
-90deg,
+.timeline-item:nth-child(even) .timeline-content{
 
-rgba(16,13,10,.80),
+order:2;
 
-rgba(16,13,10,.28)
+text-align:left;
 
-),
+}
 
-url('assets/gallery/bridal-makeup-02.jpg')
 
-center/cover
-no-repeat;
+.timeline-item:nth-child(even) .timeline-number{
 
-color:white;
+order:1;
 
-background-attachment:fixed;
+text-align:right;
+
+}
+
+
+.timeline-content{
+
+text-align:right;
+
+}
+
+
+.timeline-number{
+
+font-family:var(--serif);
+
+font-size:4rem;
+
+color:var(--gold);
+
+opacity:0.2;
+
+line-height:1;
+
+}
+
+
+.timeline-step{
+
+font-size:0.6rem;
+
+letter-spacing:0.3em;
+
+text-transform:uppercase;
+
+color:var(--gold);
+
+margin-bottom:1rem;
+
+display:block;
+
+}
+
+
+.timeline-title{
+
+font-family:var(--serif);
+
+font-size:1.8rem;
+
+font-weight:300;
+
+margin-bottom:1rem;
+
+}
+
+
+.timeline-text{
+
+color:var(--text-secondary);
+
+font-size:0.85rem;
+
+line-height:1.8;
+
+}
+
+
+.timeline-dot{
+
+position:absolute;
+
+left:50%;
+
+top:50%;
+
+transform:translate(-50%,-50%);
+
+width:12px;
+
+height:12px;
+
+background:var(--gold);
+
+border-radius:50%;
+
+box-shadow:0 0 20px rgba(201,162,39,0.5);
+
+}
+
+
+/* =========================================================
+   TESTIMONIALS
+========================================================= */
+
+.testimonials{
+
+padding:clamp(6rem,10vw,10rem) 0;
+
+position:relative;
 
 overflow:hidden;
 
 }
 
 
-.occasion::after{
+.testimonials::before{
 
-content:"";
+content:'"';
 
 position:absolute;
 
-width:400px;
+top:5rem;
 
-height:400px;
+left:50%;
 
-right:8%;
+transform:translateX(-50%);
 
-top:10%;
+font-family:var(--serif);
 
-border-radius:50%;
+font-size:20rem;
 
-background:
+color:rgba(201,162,39,0.03);
 
-radial-gradient(
+line-height:1;
 
-circle,
-
-rgba(220,177,127,.13),
-
-transparent 70%
-
-);
-
-animation:
-
-occasionGlow
-6s
-ease-in-out
-infinite
-alternate;
+pointer-events:none;
 
 }
 
 
-@keyframes occasionGlow{
+.testimonial-slider{
 
-to{
+max-width:800px;
 
-transform:
-
-scale(1.25);
-
-opacity:.6;
-
-}
-
-}
-
-
-.occasion-content{
-
-width:min(92%,var(--container));
-
-margin:auto;
-
-position:relative;
-
-z-index:2;
-
-}
-
-
-.occasion-content-inner{
-
-max-width:690px;
-
-}
-
-
-.occasion
-.section-heading{
-
-margin:25px 0;
-
-}
-
-
-.occasion-copy{
-
-color:
-
-rgba(255,255,255,.72);
-
-line-height:1.9;
-
-max-width:500px;
-
-font-size:14px;
-
-margin-bottom:35px;
-
-}
-
-
-/* =========================================================
-   EXPERIENCE
-========================================================= */
-
-.experience-header{
+margin:0 auto;
 
 text-align:center;
 
-max-width:750px;
-
-margin:
-
-0 auto 80px;
+position:relative;
 
 }
 
 
-.experience-header
-.eyebrow{
+.testimonial-slide{
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+opacity:0;
+
+transform:translateY(20px);
+
+transition:all 0.6s var(--ease-out);
+
+pointer-events:none;
+
+}
+
+
+.testimonial-slide.active{
+
+opacity:1;
+
+transform:translateY(0);
+
+pointer-events:auto;
+
+position:relative;
+
+}
+
+
+.testimonial-text{
+
+font-family:var(--serif);
+
+font-size:clamp(1.3rem,2.5vw,1.8rem);
+
+font-weight:300;
+
+font-style:italic;
+
+line-height:1.6;
+
+color:var(--cream-dim);
+
+margin-bottom:2rem;
+
+}
+
+
+.testimonial-author{
+
+font-size:0.7rem;
+
+letter-spacing:0.3em;
+
+text-transform:uppercase;
+
+color:var(--gold);
+
+}
+
+
+.testimonial-role{
+
+font-size:0.6rem;
+
+color:var(--text-muted);
+
+margin-top:0.5rem;
+
+}
+
+
+.testimonial-nav{
+
+display:flex;
 
 justify-content:center;
 
-}
+gap:1rem;
 
-
-.experience-header
-.section-heading{
-
-margin-top:25px;
+margin-top:3rem;
 
 }
 
 
-.steps{
+.testimonial-dot{
 
-display:grid;
+width:30px;
 
-grid-template-columns:
+height:2px;
 
-repeat(4,1fr);
+background:rgba(201,162,39,0.2);
 
-position:relative;
+border:none;
 
-}
-
-
-.steps::before{
-
-content:"";
-
-position:absolute;
-
-left:12%;
-right:12%;
-
-top:27px;
-
-height:1px;
-
-background:var(--border);
+transition:all 0.3s ease;
 
 }
 
 
-.step{
+.testimonial-dot.active{
 
-text-align:center;
+background:var(--gold);
 
-padding:
-
-0 20px;
-
-position:relative;
-
-}
-
-
-.step-num{
-
-width:55px;
-
-height:55px;
-
-border-radius:50%;
-
-background:var(--bg);
-
-border:
-
-1px solid
-var(--gold);
-
-color:var(--gold-dark);
-
-display:grid;
-
-place-items:center;
-
-margin:
-
-0 auto 28px;
-
-font-family:var(--serif);
-
-font-size:18px;
-
-position:relative;
-
-z-index:2;
-
-transition:.35s ease;
-
-}
-
-
-.step:hover
-.step-num{
-
-background:var(--gold-dark);
-
-color:white;
-
-transform:
-
-translateY(-6px);
-
-}
-
-
-.step h3{
-
-font-family:var(--serif);
-
-font-size:24px;
-
-font-weight:400;
-
-margin-bottom:12px;
-
-}
-
-
-.step p{
-
-color:var(--text);
-
-line-height:1.7;
-
-font-size:12px;
+width:50px;
 
 }
 
 
 /* =========================================================
-   BOOKING
+   CONTACT/BOOKING
 ========================================================= */
 
 .booking{
 
-background:var(--bg-soft);
+padding:clamp(6rem,10vw,10rem) 0;
+
+background:linear-gradient(180deg, var(--bg) 0%, var(--bg-elevated) 100%);
 
 text-align:center;
 
@@ -2904,94 +2373,103 @@ overflow:hidden;
 
 .booking::before{
 
-content:"✦";
+content:'';
 
 position:absolute;
 
-left:8%;
+top:50%;
 
-top:20%;
+left:50%;
 
-font-family:var(--serif);
+transform:translate(-50%,-50%);
 
-font-size:120px;
+width:800px;
 
-color:
+height:800px;
 
-rgba(178,139,93,.08);
+background:radial-gradient(circle, rgba(201,162,39,0.05) 0%, transparent 70%);
 
-animation:
+border-radius:50%;
 
-bookingStar
-7s
-linear
-infinite;
+pointer-events:none;
 
 }
 
 
-@keyframes bookingStar{
-
-to{
-
-transform:rotate(360deg);
-
-}
-
-}
-
-
-.booking-inner{
-
-max-width:900px;
-
-margin:auto;
+.booking-content{
 
 position:relative;
 
 z-index:2;
 
-}
+max-width:700px;
 
-
-.booking
-.eyebrow{
-
-justify-content:center;
+margin:0 auto;
 
 }
 
 
-.booking
-.section-heading{
+.booking-label{
 
-margin:25px 0;
+color:var(--gold);
+
+font-size:0.6rem;
+
+letter-spacing:0.4em;
+
+text-transform:uppercase;
+
+margin-bottom:2rem;
+
+display:block;
 
 }
 
 
-.booking p{
+.booking-title{
 
-max-width:580px;
+font-family:var(--serif);
 
-margin:auto;
+font-size:clamp(3rem,7vw,5rem);
 
-color:var(--text);
+font-weight:300;
 
-line-height:1.8;
+line-height:1;
+
+margin-bottom:2rem;
+
+}
+
+
+.booking-title em{
+
+color:var(--gold);
+
+font-style:italic;
+
+}
+
+
+.booking-text{
+
+color:var(--text-secondary);
+
+font-size:0.95rem;
+
+line-height:1.9;
+
+margin-bottom:3rem;
 
 }
 
 
 .booking-actions{
 
-margin-top:38px;
-
 display:flex;
 
 justify-content:center;
 
-gap:12px;
+gap:1.5rem;
 
 flex-wrap:wrap;
 
@@ -3002,15 +2480,13 @@ flex-wrap:wrap;
    FOOTER
 ========================================================= */
 
-footer{
+.footer{
 
-background:#161411;
+background:var(--bg);
 
-color:white;
+padding:5rem 0 2rem;
 
-padding:
-
-80px 0 25px;
+border-top:1px solid rgba(201,162,39,0.1);
 
 }
 
@@ -3019,13 +2495,11 @@ padding:
 
 display:grid;
 
-grid-template-columns:
+grid-template-columns:2fr 1fr 1fr 1fr;
 
-1.3fr .7fr .7fr;
+gap:4rem;
 
-gap:60px;
-
-padding-bottom:60px;
+margin-bottom:4rem;
 
 }
 
@@ -3034,18 +2508,16 @@ padding-bottom:60px;
 
 font-family:var(--serif);
 
-font-size:
+font-size:2.5rem;
 
-clamp(45px,6vw,75px);
+font-weight:300;
 
-line-height:.9;
+line-height:1.2;
 
 }
 
 
 .footer-brand span{
-
-display:block;
 
 color:var(--gold);
 
@@ -3054,17 +2526,32 @@ font-style:italic;
 }
 
 
+.footer-desc{
+
+color:var(--text-muted);
+
+font-size:0.85rem;
+
+line-height:1.8;
+
+margin-top:1rem;
+
+max-width:300px;
+
+}
+
+
 .footer-heading{
 
-font-size:9px;
+font-size:0.6rem;
 
-letter-spacing:3px;
+letter-spacing:0.3em;
 
 text-transform:uppercase;
 
 color:var(--gold);
 
-margin-bottom:22px;
+margin-bottom:1.5rem;
 
 }
 
@@ -3078,27 +2565,25 @@ list-style:none;
 
 .footer-links li{
 
-margin-bottom:13px;
+margin-bottom:0.8rem;
 
 }
 
 
 .footer-links a{
 
-font-size:13px;
+color:var(--text-secondary);
 
-color:
+font-size:0.85rem;
 
-rgba(255,255,255,.65);
-
-transition:.3s ease;
+transition:all 0.3s ease;
 
 }
 
 
 .footer-links a:hover{
 
-color:white;
+color:var(--gold);
 
 padding-left:5px;
 
@@ -3107,98 +2592,145 @@ padding-left:5px;
 
 .footer-bottom{
 
-border-top:
+border-top:1px solid rgba(201,162,39,0.1);
 
-1px solid
-rgba(255,255,255,.1);
-
-padding-top:25px;
+padding-top:2rem;
 
 display:flex;
 
 justify-content:space-between;
 
-gap:20px;
+align-items:center;
 
-color:
+flex-wrap:wrap;
 
-rgba(255,255,255,.4);
+gap:1rem;
 
-font-size:10px;
+}
 
-letter-spacing:1px;
+
+.footer-copy{
+
+font-size:0.7rem;
+
+color:var(--text-muted);
+
+}
+
+
+.footer-social{
+
+display:flex;
+
+gap:1rem;
+
+}
+
+
+.social-link{
+
+width:40px;
+
+height:40px;
+
+border:1px solid rgba(201,162,39,0.2);
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+color:var(--text-secondary);
+
+transition:all 0.3s ease;
+
+font-size:0.8rem;
+
+}
+
+
+.social-link:hover{
+
+background:var(--gold);
+
+color:var(--bg);
+
+border-color:var(--gold);
+
+transform:translateY(-3px);
 
 }
 
 
 /* =========================================================
-   WHATSAPP
+   WHATSAPP FLOAT
 ========================================================= */
 
-.whatsapp{
+.whatsapp-float{
 
 position:fixed;
 
-z-index:900;
+bottom:2rem;
 
-right:25px;
+right:2rem;
 
-bottom:25px;
+width:60px;
 
-width:58px;
+height:60px;
 
-height:58px;
+background:var(--gold);
 
 border-radius:50%;
 
-background:#191714;
+display:flex;
 
-color:white;
+align-items:center;
+justify-content:center;
 
-display:grid;
+color:var(--bg);
 
-place-items:center;
+z-index:900;
 
-box-shadow:
+box-shadow:0 10px 30px rgba(201,162,39,0.3);
 
-0 12px 35px
-rgba(0,0,0,.18);
-
-transition:.3s ease;
+transition:all 0.3s ease;
 
 }
 
 
-.whatsapp::before{
+.whatsapp-float:hover{
 
-content:"";
+transform:scale(1.1) translateY(-5px);
+
+box-shadow:0 15px 40px rgba(201,162,39,0.4);
+
+}
+
+
+.whatsapp-float::before{
+
+content:'';
 
 position:absolute;
 
-inset:-7px;
+inset:-5px;
+
+border:1px solid var(--gold);
 
 border-radius:50%;
 
-border:
-
-1px solid
-rgba(178,139,93,.30);
-
-animation:
-
-whatsappPulse
-2.5s
-ease-out
-infinite;
+animation:pulse 2s ease-out infinite;
 
 }
 
 
-@keyframes whatsappPulse{
+@keyframes pulse{
 
 0%{
 
-transform:scale(.85);
+transform:scale(1);
 
 opacity:1;
 
@@ -3206,7 +2738,7 @@ opacity:1;
 
 100%{
 
-transform:scale(1.4);
+transform:scale(1.5);
 
 opacity:0;
 
@@ -3215,44 +2747,142 @@ opacity:0;
 }
 
 
-.whatsapp:hover{
+/* =========================================================
+   REVEAL ANIMATIONS
+========================================================= */
 
-transform:
+.reveal{
 
-translateY(-5px)
-scale(1.04);
+opacity:0;
 
-background:var(--gold-dark);
+transform:translateY(40px);
+
+transition:all 1s var(--ease-out);
 
 }
 
 
-.whatsapp svg{
+.reveal.active{
 
-width:24px;
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+.reveal-left{
+
+opacity:0;
+
+transform:translateX(-60px);
+
+transition:all 1s var(--ease-out);
+
+}
+
+
+.reveal-left.active{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+
+.reveal-right{
+
+opacity:0;
+
+transform:translateX(60px);
+
+transition:all 1s var(--ease-out);
+
+}
+
+
+.reveal-right.active{
+
+opacity:1;
+
+transform:translateX(0);
 
 }
 
 
 /* =========================================================
-   TABLET
+   RESPONSIVE
 ========================================================= */
 
-@media(max-width:900px){
+@media(max-width:1024px){
 
-.header{
+.about-grid{
 
-padding:20px 0;
+grid-template-columns:1fr;
+
+gap:4rem;
+
+}
+
+.portfolio-item:nth-child(1),
+.portfolio-item:nth-child(4){
+
+grid-column:span 12;
+
+}
+
+.portfolio-item:nth-child(2),
+.portfolio-item:nth-child(3){
+
+grid-column:span 6;
+
+}
+
+.timeline::before{
+
+left:20px;
+
+}
+
+.timeline-item{
+
+grid-template-columns:1fr;
+
+gap:1rem;
+
+padding-left:60px;
+
+}
+
+.timeline-content,
+.timeline-item:nth-child(even) .timeline-content{
+
+text-align:left;
+
+order:2;
+
+}
+
+.timeline-number,
+.timeline-item:nth-child(even) .timeline-number{
+
+order:1;
+
+text-align:left;
+
+}
+
+.timeline-dot{
+
+left:20px;
+
+}
 
 }
 
 
-.menu-btn{
-
-display:block;
-
-}
-
+@media(max-width:768px){
 
 .nav-links{
 
@@ -3260,34 +2890,25 @@ position:fixed;
 
 inset:0;
 
-background:#171512;
-
-color:white;
-
-display:flex;
+background:var(--bg);
 
 flex-direction:column;
 
 justify-content:center;
 
-align-items:flex-start;
+align-items:center;
 
-padding:0 8%;
-
-gap:28px;
+gap:2rem;
 
 opacity:0;
 
 visibility:hidden;
 
-transform:
+transition:all 0.5s var(--ease-out);
 
-translateY(-15px);
-
-transition:.4s ease;
+z-index:1001;
 
 }
-
 
 .nav-links.open{
 
@@ -3295,18 +2916,13 @@ opacity:1;
 
 visibility:visible;
 
-transform:
-
-translateY(0);
-
 }
-
 
 .nav-links a{
 
 font-family:var(--serif);
 
-font-size:35px;
+font-size:2rem;
 
 text-transform:none;
 
@@ -3314,386 +2930,59 @@ letter-spacing:0;
 
 }
 
+.menu-toggle{
 
-.nav-links
-.nav-cta{
-
-font-family:var(--sans);
-
-font-size:11px;
-
-text-transform:uppercase;
-
-letter-spacing:2px;
-
-margin-top:15px;
+display:block;
 
 }
-
-
-.header.menu-active{
-
-color:white;
-
-}
-
 
 .hero-title{
 
-letter-spacing:-2px;
+font-size:clamp(3rem,15vw,5rem);
 
 }
 
-
-.hero-title span{
-
-margin-left:20px;
-
-}
-
-
-.hero-bottom{
-
-align-items:flex-start;
-
-flex-direction:column;
-
-gap:25px;
-
-}
-
-
-.scroll-indicator{
-
-display:none;
-
-}
-
-
-.makeup-brush{
-
-opacity:.08;
-
-right:-8%;
-
-}
-
-
-.about-grid{
+.portfolio-grid{
 
 grid-template-columns:1fr;
 
 }
 
+.portfolio-item{
 
-.about-image-wrap{
-
-max-width:90%;
-
-}
-
-
-.about-image{
-
-height:600px;
+grid-column:span 1 !important;
 
 }
-
-
-.about-number{
-
-right:-25px;
-
-}
-
 
 .services-header{
 
-grid-template-columns:1fr;
-
-}
-
-
-.gallery-grid{
-
-grid-template-columns:
-
-1fr 1fr;
-
-grid-template-rows:
-
-480px 300px 480px;
-
-}
-
-
-.gallery-card:nth-child(1){
-
-grid-row:auto;
-
-}
-
-
-.gallery-card:nth-child(4){
-
-grid-column:auto;
-
-grid-row:auto;
-
-}
-
-
-.gallery-card:nth-child(1),
-.gallery-card:nth-child(4){
-
-grid-column:
-
-span 2;
-
-}
-
-
-.portfolio-header{
-
 flex-direction:column;
 
 align-items:flex-start;
 
 }
 
+.service-content{
 
-.steps{
+grid-template-columns:50px 1fr auto;
 
-grid-template-columns:
-
-1fr 1fr;
-
-gap:
-
-60px 20px;
+gap:1rem;
 
 }
-
-
-.steps::before{
-
-display:none;
-
-}
-
-
-.footer-grid{
-
-grid-template-columns:
-
-1fr 1fr;
-
-}
-
-
-.footer-grid > div:first-child{
-
-grid-column:
-
-span 2;
-
-}
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:600px){
-
-.logo-main{
-
-font-size:24px;
-
-}
-
-
-.hero{
-
-min-height:100svh;
-
-}
-
-
-.hero-video{
-
-filter:
-
-brightness(.55)
-contrast(.90)
-saturate(.76);
-
-}
-
-
-.hero-overlay{
-
-background:
-
-linear-gradient(
-
-0deg,
-
-rgba(10,8,6,.88) 0%,
-
-rgba(10,8,6,.45) 55%,
-
-rgba(10,8,6,.35) 100%
-
-);
-
-}
-
-
-.hero-content{
-
-padding-bottom:65px;
-
-}
-
-
-.hero-title{
-
-font-size:
-
-clamp(54px,18vw,80px);
-
-}
-
-
-.makeup-brush{
-
-display:none;
-
-}
-
-
-.hero-cursor-glow{
-
-display:none;
-
-}
-
-
-.about-image{
-
-height:480px;
-
-}
-
-
-.about-number{
-
-width:115px;
-
-height:115px;
-
-right:-18px;
-
-bottom:-25px;
-
-font-size:8px;
-
-}
-
-
-.service{
-
-grid-template-columns:
-
-45px 1fr auto;
-
-padding:
-
-25px 0;
-
-}
-
-
-.service-arrow{
-
-width:38px;
-
-height:38px;
-
-}
-
-
-.gallery-grid{
-
-display:grid;
-
-grid-template-columns:1fr;
-
-grid-template-rows:none;
-
-}
-
-
-.gallery-card,
-.gallery-card:nth-child(1),
-.gallery-card:nth-child(4){
-
-grid-column:auto;
-
-min-height:430px;
-
-}
-
-
-.occasion{
-
-min-height:650px;
-
-background-attachment:scroll;
-
-}
-
-
-.steps{
-
-grid-template-columns:1fr;
-
-}
-
 
 .footer-grid{
 
 grid-template-columns:1fr;
 
-}
-
-
-.footer-grid > div:first-child{
-
-grid-column:auto;
+gap:3rem;
 
 }
 
+.about-stats{
 
-.footer-bottom{
+flex-wrap:wrap;
 
-flex-direction:column;
-
-}
-
-
-.whatsapp{
-
-width:52px;
-
-height:52px;
-
-right:16px;
-
-bottom:16px;
+gap:2rem;
 
 }
 
@@ -3706,17 +2995,13 @@ bottom:16px;
 
 @media(prefers-reduced-motion:reduce){
 
-*,
-*::before,
-*::after{
+*{
 
-scroll-behavior:auto!important;
+animation-duration:0.01ms !important;
 
-animation-duration:.01ms!important;
+animation-iteration-count:1 !important;
 
-animation-iteration-count:1!important;
-
-transition-duration:.01ms!important;
+transition-duration:0.01ms !important;
 
 }
 
@@ -3726,104 +3011,64 @@ transition-duration:.01ms!important;
 
 </head>
 
-
 <body>
 
 
-<!-- ======================================================
-     LOADER
-====================================================== -->
+<!-- CURSOR -->
 
-<div class="loader" id="loader">
+<div class="cursor-dot" id="cursorDot"></div>
 
-<div class="loader-inner">
+<div class="cursor-ring" id="cursorRing"></div>
 
-<div class="loader-logo">
-HETAL GALA
+
+<!-- PRELOADER -->
+
+<div class="preloader" id="preloader">
+
+<div class="preloader-content">
+
+<div class="preloader-logo">HETAL GALA</div>
+
+<div class="preloader-sub">Luxury Beauty Artistry</div>
+
+<div class="preloader-line"></div>
+
+<div class="preloader-counter" id="preloaderCounter">0%</div>
+
 </div>
 
-<div class="loader-sub">
-Makeup • Hair • Draping
-</div>
-
-<div class="loader-line"></div>
-
-</div>
-
 </div>
 
 
-<!-- ======================================================
-     HEADER
-====================================================== -->
+<!-- NAVIGATION -->
 
-<header class="header" id="header">
+<nav class="nav" id="nav">
 
-<div class="container nav">
+<div class="container nav-inner">
 
+<a href="#" class="nav-logo">
 
-<a href="index.html" class="logo">
-
-<span class="logo-main">
-HETAL GALA
-</span>
-
-<span class="logo-small">
-Makeup • Hair • Draping
-</span>
+Hetal <span>Gala</span>
 
 </a>
-
 
 <ul class="nav-links" id="navLinks">
 
-<li>
-<a href="index.html">
-Home
-</a>
-</li>
+<li><a href="#about">About</a></li>
 
+<li><a href="#services">Services</a></li>
 
-<li>
-<a href="about.html">
-About Hetal
-</a>
-</li>
+<li><a href="#portfolio">Portfolio</a></li>
 
+<li><a href="#experience">Experience</a></li>
 
-<li>
-<a href="#services">
-Services
-</a>
-</li>
-
-
-<li>
-<a href="gallery.html">
-Gallery
-</a>
-</li>
-
-
-<li>
-
-<a
-href="#booking"
-class="nav-cta">
-
-Book Hetal
-
-</a>
-
-</li>
+<li><a href="#contact" class="nav-cta">Book Now</a></li>
 
 </ul>
 
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
 
-<button
-class="menu-btn"
-id="menuBtn"
-aria-label="Open Menu">
+<span></span>
 
 <span></span>
 
@@ -3831,1197 +3076,803 @@ aria-label="Open Menu">
 
 </button>
 
-
 </div>
 
-</header>
+</nav>
 
 
-<!-- ======================================================
-     HERO
-====================================================== -->
+<!-- HERO -->
 
 <section class="hero" id="hero">
 
+<div class="hero-video-container">
 
-<!-- VIDEO -->
+<video class="hero-video" autoplay muted loop playsinline poster="assets/hero/hero-poster.jpg">
 
-<video
-
-class="hero-video"
-
-autoplay
-
-muted
-
-loop
-
-playsinline
-
-poster="assets/hero/hero-poster.jpg"
-
->
-
-<!-- KEEPING YOUR EXISTING MP4 PATH -->
-
-<source
-src="hetal-gala-makeup-hero.mp4"
-type="video/mp4">
+<source src="hetal-gala-makeup-hero.mp4" type="video/mp4">
 
 </video>
 
-
-<!-- OVERLAY -->
+</div>
 
 <div class="hero-overlay"></div>
 
-
-<!-- BEAUTY HAZE -->
-
-<div class="hero-haze"></div>
-
-
-<!-- MOUSE GLOW -->
-
-<div
-class="hero-cursor-glow"
-id="heroCursorGlow">
-</div>
-
-
-<!-- BEAUTY EFFECTS -->
-
-<div
-class="beauty-fx"
-id="beautyFx">
-
-
-<div class="powder-cloud one"></div>
-
-<div class="powder-cloud two"></div>
-
-
-<div class="beauty-sparkle sparkle-one"></div>
-
-<div class="beauty-sparkle sparkle-two"></div>
-
-<div class="beauty-sparkle sparkle-three"></div>
-
-<div class="beauty-sparkle sparkle-four"></div>
-
-
-<!-- FLOATING MAKEUP BRUSH -->
-
-<div class="makeup-brush">
-
-<div class="brush-head"></div>
-
-<div class="brush-metal"></div>
-
-<div class="brush-handle"></div>
-
-</div>
-
-
-</div>
-
-
-<!-- LUXURY GRAIN -->
-
-<div class="hero-grain"></div>
-
-
-<!-- HERO CONTENT -->
+<div class="hero-particles" id="heroParticles"></div>
 
 <div class="hero-content">
 
-
-<div class="eyebrow">
-
-Makeup Artist • Hair Stylist • Draping
-
-</div>
-
+<div class="hero-eyebrow">Makeup Artist • Hair Stylist • Draping Specialist</div>
 
 <h1 class="hero-title">
 
-Beauty,
+<div class="line"><span>Beauty,</span></div>
 
-<span>
-Styled by Hetal.
-</span>
+<div class="line"><span>Perfected.</span></div>
 
 </h1>
 
+<p class="hero-subtitle">
 
-<div class="hero-bottom">
-
-
-<p class="hero-copy">
-
-Creating elegant, camera-ready and unforgettable
-looks for weddings, celebrations, fashion,
-modelling and life's most beautiful moments.
+Creating timeless, elegant looks for life's most cherished moments. From bridal transformations to editorial artistry, every detail is crafted with precision and passion.
 
 </p>
 
+<div class="hero-actions">
 
-<a
-href="gallery.html"
-class="btn btn-light">
+<a href="#portfolio" class="btn btn-solid">
 
-Explore Her Work
+<span>View Portfolio</span>
 
-<span>↗</span>
+<span>→</span>
 
 </a>
 
+<a href="#contact" class="btn">
+
+<span>Book Consultation</span>
+
+</a>
 
 </div>
 
 </div>
-
 
 <div class="scroll-indicator">
 
-Scroll to discover
+<span class="scroll-text">Scroll</span>
 
 <div class="scroll-line"></div>
 
 </div>
 
-
 </section>
 
 
-<!-- ======================================================
-     MARQUEE
-====================================================== -->
+<!-- MARQUEE -->
 
-<section class="marquee">
+<section class="marquee-section">
 
 <div class="marquee-track">
 
+<div class="marquee-content">
 
-<div class="marquee-group">
+<span class="marquee-item">Bridal Makeup</span>
 
-<span class="marquee-item">
-BRIDAL MAKEUP
-</span>
+<span class="marquee-item gold">✦</span>
 
-<span class="marquee-dot">✦</span>
+<span class="marquee-item">Hairstyling</span>
 
+<span class="marquee-item gold">✦</span>
 
-<span class="marquee-item">
-HAIRSTYLING
-</span>
+<span class="marquee-item">Saree Draping</span>
 
-<span class="marquee-dot">✦</span>
+<span class="marquee-item gold">✦</span>
 
+<span class="marquee-item">Event Makeup</span>
 
-<span class="marquee-item">
-SAREE DRAPING
-</span>
+<span class="marquee-item gold">✦</span>
 
-<span class="marquee-dot">✦</span>
+<span class="marquee-item">Fashion & Editorial</span>
 
-
-<span class="marquee-item">
-EVENT MAKEUP
-</span>
-
-<span class="marquee-dot">✦</span>
-
-
-<span class="marquee-item">
-FASHION & MODELLING
-</span>
-
-<span class="marquee-dot">✦</span>
+<span class="marquee-item gold">✦</span>
 
 </div>
 
+<div class="marquee-content">
 
-<div class="marquee-group">
+<span class="marquee-item">Bridal Makeup</span>
 
-<span class="marquee-item">
-BRIDAL MAKEUP
-</span>
+<span class="marquee-item gold">✦</span>
 
-<span class="marquee-dot">✦</span>
+<span class="marquee-item">Hairstyling</span>
 
+<span class="marquee-item gold">✦</span>
 
-<span class="marquee-item">
-HAIRSTYLING
-</span>
+<span class="marquee-item">Saree Draping</span>
 
-<span class="marquee-dot">✦</span>
+<span class="marquee-item gold">✦</span>
 
+<span class="marquee-item">Event Makeup</span>
 
-<span class="marquee-item">
-SAREE DRAPING
-</span>
+<span class="marquee-item gold">✦</span>
 
-<span class="marquee-dot">✦</span>
+<span class="marquee-item">Fashion & Editorial</span>
 
-
-<span class="marquee-item">
-EVENT MAKEUP
-</span>
-
-<span class="marquee-dot">✦</span>
-
-
-<span class="marquee-item">
-FASHION & MODELLING
-</span>
-
-<span class="marquee-dot">✦</span>
+<span class="marquee-item gold">✦</span>
 
 </div>
-
 
 </div>
 
 </section>
 
 
-<!-- ======================================================
-     ABOUT
-====================================================== -->
+<!-- ABOUT -->
 
-<section
-class="section about"
-id="about">
+<section class="about" id="about">
 
+<div class="container">
 
-<div class="container about-grid">
+<div class="about-grid">
 
-
-<div class="about-image-wrap reveal-left">
-
+<div class="about-image-wrapper reveal-left">
 
 <div class="about-image">
 
-<img
-
-src="assets/about/hetal-gala-profile.jpg"
-
-alt="Hetal Gala Makeup Artist">
+<img src="assets/about/hetal-gala-profile.jpg" alt="Hetal Gala - Luxury Makeup Artist">
 
 </div>
 
+<div class="about-frame"></div>
 
-<div class="about-number">
+<div class="about-badge">
 
-Makeup • Hair • Beauty • Artistry
-
-</div>
-
+Est. 2015
 
 </div>
 
+</div>
 
 <div class="about-content reveal-right">
 
+<span class="section-label">The Artist</span>
 
-<div class="eyebrow">
+<h2 class="about-title">
 
-Meet the Artist
-
-</div>
-
-
-<h2 class="section-heading">
-
-Hi, I'm
-
-<em>Hetal.</em>
-
-</h2>
-
-
-<p class="section-copy">
-
-Beauty is personal. Every face, every occasion
-and every story deserves a look of its own.
-
-<br><br>
-
-Hetal Gala is a makeup artist, hairstylist and
-saree draping professional creating refined
-looks for brides, celebrations, events, fashion,
-modelling and photoshoots.
-
-<br><br>
-
-Her approach is centred around enhancing natural
-beauty while creating a look that feels
-comfortable, confident and completely you.
-
-</p>
-
-
-<div class="signature">
-
-Hetal Gala
-
-</div>
-
-
-<a
-href="about.html"
-class="btn btn-dark">
-
-Discover Hetal's Story
-
-<span>→</span>
-
-</a>
-
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     SERVICES
-====================================================== -->
-
-<section
-class="section services"
-id="services">
-
-
-<div class="container">
-
-
-<div class="services-header">
-
-
-<div class="reveal">
-
-
-<div class="eyebrow">
-
-What I Do
-
-</div>
-
-
-<h2
-class="section-heading"
-style="margin-top:25px;">
-
-Artistry for every
-
-<em>occasion.</em>
-
-</h2>
-
-
-</div>
-
-
-<p class="section-copy reveal">
-
-From timeless bridal elegance to camera-ready
-fashion looks, every service is thoughtfully
-tailored around your occasion, personality
-and style.
-
-</p>
-
-
-</div>
-
-
-<div class="services-list">
-
-
-<div class="service reveal">
-
-<span class="service-num">
-01
-</span>
-
-<h3 class="service-title">
-Bridal Makeup
-</h3>
-
-<span class="service-arrow">
-↗
-</span>
-
-</div>
-
-
-<div class="service reveal">
-
-<span class="service-num">
-02
-</span>
-
-<h3 class="service-title">
-Engagement & Reception
-</h3>
-
-<span class="service-arrow">
-↗
-</span>
-
-</div>
-
-
-<div class="service reveal">
-
-<span class="service-num">
-03
-</span>
-
-<h3 class="service-title">
-Party & Event Makeup
-</h3>
-
-<span class="service-arrow">
-↗
-</span>
-
-</div>
-
-
-<div class="service reveal">
-
-<span class="service-num">
-04
-</span>
-
-<h3 class="service-title">
-Fashion & Model Makeup
-</h3>
-
-<span class="service-arrow">
-↗
-</span>
-
-</div>
-
-
-<div class="service reveal">
-
-<span class="service-num">
-05
-</span>
-
-<h3 class="service-title">
-Professional Hairstyling
-</h3>
-
-<span class="service-arrow">
-↗
-</span>
-
-</div>
-
-
-<div class="service reveal">
-
-<span class="service-num">
-06
-</span>
-
-<h3 class="service-title">
-Saree Draping
-</h3>
-
-<span class="service-arrow">
-↗
-</span>
-
-</div>
-
-
-<div class="service reveal">
-
-<span class="service-num">
-07
-</span>
-
-<h3 class="service-title">
-Complete Occasion Styling
-</h3>
-
-<span class="service-arrow">
-↗
-</span>
-
-</div>
-
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     PORTFOLIO
-====================================================== -->
-
-<section class="section portfolio">
-
-
-<div class="container">
-
-
-<div class="portfolio-header">
-
-
-<div class="reveal">
-
-
-<div class="eyebrow">
-
-Selected Portfolio
-
-</div>
-
-
-<h2
-class="section-heading"
-style="margin-top:25px;">
-
-Her work.
+Beauty is an art,
 
 <br>
 
-<em>
-Your moment.
-</em>
+<em>I am the artist.</em>
 
 </h2>
 
+<p class="about-text">
 
-</div>
-
-
-<p
-class="section-copy reveal"
-style="max-width:360px;">
-
-A glimpse into bridal transformations,
-special occasions, hairstyling, draping
-and camera-ready beauty created by Hetal.
+With over a decade of experience in luxury beauty artistry, I specialize in creating looks that enhance your natural beauty while reflecting your unique personality. Every brushstroke is intentional, every detail considered.
 
 </p>
 
+<p class="about-text">
+
+From intimate gatherings to grand celebrations, my approach combines technical expertise with an intuitive understanding of what makes you feel confident and radiant.
+
+</p>
+
+<div class="about-stats">
+
+<div class="stat-item">
+
+<span class="stat-number" data-count="500">0</span>
+
+<span class="stat-label">Brides Styled</span>
 
 </div>
 
+<div class="stat-item">
 
-<div class="gallery-grid">
+<span class="stat-number" data-count="10">0</span>
 
-
-<a
-href="gallery.html"
-class="gallery-card reveal">
-
-
-<img
-src="assets/gallery/bridal-makeup-01.jpg"
-alt="Bridal Makeup by Hetal Gala">
-
-
-<div class="gallery-overlay"></div>
-
-
-<div class="gallery-info">
-
-<div class="gallery-category">
-Bridal
-</div>
-
-<div class="gallery-title">
-The Bridal Edit
-</div>
+<span class="stat-label">Years Experience</span>
 
 </div>
 
+<div class="stat-item">
 
-</a>
+<span class="stat-number" data-count="50">0</span>
 
+<span class="stat-label">Awards Won</span>
 
-<a
-href="gallery.html"
-class="gallery-card reveal">
-
-
-<img
-src="assets/gallery/hairstyle-01.jpg"
-alt="Hairstyling by Hetal Gala">
-
-
-<div class="gallery-overlay"></div>
-
-
-<div class="gallery-info">
-
-<div class="gallery-category">
-Hair
-</div>
-
-<div class="gallery-title">
-Styled Details
 </div>
 
 </div>
 
-
-</a>
-
-
-<a
-href="gallery.html"
-class="gallery-card reveal">
-
-
-<img
-src="assets/gallery/saree-draping-01.jpg"
-alt="Saree Draping by Hetal Gala">
-
-
-<div class="gallery-overlay"></div>
-
-
-<div class="gallery-info">
-
-<div class="gallery-category">
-Draping
-</div>
-
-<div class="gallery-title">
-Draped Elegance
 </div>
 
 </div>
-
-
-</a>
-
-
-<a
-href="gallery.html"
-class="gallery-card reveal">
-
-
-<img
-src="assets/gallery/model-makeup-01.jpg"
-alt="Model Makeup by Hetal Gala">
-
-
-<div class="gallery-overlay"></div>
-
-
-<div class="gallery-info">
-
-<div class="gallery-category">
-Fashion
-</div>
-
-<div class="gallery-title">
-Camera Ready
-</div>
-
-</div>
-
-
-</a>
-
-
-</div>
-
-
-<div class="portfolio-button reveal">
-
-
-<a
-href="gallery.html"
-class="btn btn-dark">
-
-View Full Gallery
-
-<span>↗</span>
-
-</a>
-
-
-</div>
-
 
 </div>
 
 </section>
 
 
-<!-- ======================================================
-     WEDDING
-====================================================== -->
+<!-- SERVICES -->
 
-<section class="occasion">
-
-
-<div class="occasion-content">
-
-
-<div class="occasion-content-inner reveal">
-
-
-<div class="eyebrow">
-
-Weddings & Celebrations
-
-</div>
-
-
-<h2 class="section-heading">
-
-For your most
-
-<em>
-beautiful day.
-</em>
-
-</h2>
-
-
-<p class="occasion-copy">
-
-Your special day deserves more than a beautiful
-look.
-
-From makeup and hairstyling to saree and dupatta
-draping, Hetal brings every detail together so
-you can simply enjoy your moment.
-
-</p>
-
-
-<a
-href="#booking"
-class="btn btn-light">
-
-Discuss Your Look
-
-<span>→</span>
-
-</a>
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-<!-- ======================================================
-     EXPERIENCE
-====================================================== -->
-
-<section class="section experience">
-
+<section class="services" id="services">
 
 <div class="container">
 
-
-<div class="experience-header reveal">
-
-
-<div class="eyebrow">
-
-The Experience
-
-</div>
-
-
-<h2 class="section-heading">
-
-From vision to
-
-<em>
-your final look.
-</em>
-
-</h2>
-
-
-</div>
-
-
-<div class="steps">
-
-
-<div class="step reveal">
-
-<div class="step-num">
-01
-</div>
-
-<h3>
-Tell Me Your Occasion
-</h3>
-
-<p>
-
-Share your event, date, location
-and the services you're looking for.
-
-</p>
-
-</div>
-
-
-<div class="step reveal">
-
-<div class="step-num">
-02
-</div>
-
-<h3>
-Let's Discuss Your Look
-</h3>
-
-<p>
-
-We understand your outfit, preferences
-and inspiration before planning the look.
-
-</p>
-
-</div>
-
-
-<div class="step reveal">
-
-<div class="step-num">
-03
-</div>
-
-<h3>
-Confirm Your Booking
-</h3>
-
-<p>
-
-Finalise the services and secure
-your date for the occasion.
-
-</p>
-
-</div>
-
-
-<div class="step reveal">
-
-<div class="step-num">
-04
-</div>
-
-<h3>
-Get Ready & Shine
-</h3>
-
-<p>
-
-Relax while your complete makeup,
-hair and styling comes together.
-
-</p>
-
-</div>
-
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     BOOKING
-====================================================== -->
-
-<section
-class="section booking"
-id="booking">
-
-
-<div class="container">
-
-
-<div class="booking-inner reveal">
-
-
-<div class="eyebrow">
-
-Book Your Look
-
-</div>
-
-
-<h2 class="section-heading">
-
-Have an occasion
-
-<em>
-coming up?
-</em>
-
-</h2>
-
-
-<p>
-
-Tell Hetal about your occasion and
-the look you have in mind.
-
-Enquire about availability for makeup,
-hairstyling, saree draping or complete
-occasion styling.
-
-</p>
-
-
-<div class="booking-actions">
-
-
-<a
-href="#"
-class="btn btn-dark">
-
-WhatsApp Hetal
-
-<span>↗</span>
-
-</a>
-
-
-<a
-href="#"
-class="btn">
-
-Call for Booking
-
-</a>
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- ======================================================
-     FOOTER
-====================================================== -->
-
-<footer>
-
-
-<div class="container">
-
-
-<div class="footer-grid">
-
+<div class="services-header reveal">
 
 <div>
 
+<span class="section-label" style="color:var(--gold); font-size:0.6rem; letter-spacing:0.4em; text-transform:uppercase; display:block; margin-bottom:1rem;">Services</span>
+
+<h2 class="services-title">
+
+Signature
+
+<em>Artistry</em>
+
+</h2>
+
+</div>
+
+<p class="services-subtitle">
+
+Each service is tailored to your unique features, occasion, and personal style. Experience luxury beauty treatments designed to make you feel extraordinary.
+
+</p>
+
+</div>
+
+<div class="services-list">
+
+<div class="service-item reveal">
+
+<div class="service-bg"></div>
+
+<div class="service-content">
+
+<span class="service-number">01</span>
+
+<h3 class="service-name">Bridal Makeup</h3>
+
+<span class="service-desc">Complete bridal transformation with premium products</span>
+
+<div class="service-arrow">→</div>
+
+</div>
+
+</div>
+
+<div class="service-item reveal">
+
+<div class="service-bg"></div>
+
+<div class="service-content">
+
+<span class="service-number">02</span>
+
+<h3 class="service-name">Engagement & Reception</h3>
+
+<span class="service-desc">Elegant looks for your special celebrations</span>
+
+<div class="service-arrow">→</div>
+
+</div>
+
+</div>
+
+<div class="service-item reveal">
+
+<div class="service-bg"></div>
+
+<div class="service-content">
+
+<span class="service-number">03</span>
+
+<h3 class="service-name">Party & Event Makeup</h3>
+
+<span class="service-desc">Camera-ready looks for any occasion</span>
+
+<div class="service-arrow">→</div>
+
+</div>
+
+</div>
+
+<div class="service-item reveal">
+
+<div class="service-bg"></div>
+
+<div class="service-content">
+
+<span class="service-number">04</span>
+
+<h3 class="service-name">Fashion & Editorial</h3>
+
+<span class="service-desc">High-fashion looks for shoots and runways</span>
+
+<div class="service-arrow">→</div>
+
+</div>
+
+</div>
+
+<div class="service-item reveal">
+
+<div class="service-bg"></div>
+
+<div class="service-content">
+
+<span class="service-number">05</span>
+
+<h3 class="service-name">Professional Hairstyling</h3>
+
+<span class="service-desc">From classic updos to modern waves</span>
+
+<div class="service-arrow">→</div>
+
+</div>
+
+</div>
+
+<div class="service-item reveal">
+
+<div class="service-bg"></div>
+
+<div class="service-content">
+
+<span class="service-number">06</span>
+
+<h3 class="service-name">Saree Draping</h3>
+
+<span class="service-desc">Traditional and contemporary draping styles</span>
+
+<div class="service-arrow">→</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PORTFOLIO -->
+
+<section class="portfolio" id="portfolio">
+
+<div class="container">
+
+<div class="portfolio-header reveal">
+
+<span class="section-label" style="color:var(--gold); font-size:0.6rem; letter-spacing:0.4em; text-transform:uppercase; display:block; margin-bottom:1rem;">Portfolio</span>
+
+<h2 class="portfolio-title">
+
+Selected
+
+<em>Works</em>
+
+</h2>
+
+</div>
+
+<div class="portfolio-grid">
+
+<div class="portfolio-item reveal">
+
+<img src="assets/gallery/bridal-makeup-01.jpg" alt="Bridal Makeup">
+
+<div class="portfolio-overlay">
+
+<div class="portfolio-info">
+
+<span class="portfolio-category">Bridal</span>
+
+<h3 class="portfolio-name">The Bridal Edit</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="portfolio-item reveal">
+
+<img src="assets/gallery/hairstyle-01.jpg" alt="Hairstyling">
+
+<div class="portfolio-overlay">
+
+<div class="portfolio-info">
+
+<span class="portfolio-category">Hair</span>
+
+<h3 class="portfolio-name">Styled Perfection</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="portfolio-item reveal">
+
+<img src="assets/gallery/saree-draping-01.jpg" alt="Saree Draping">
+
+<div class="portfolio-overlay">
+
+<div class="portfolio-info">
+
+<span class="portfolio-category">Draping</span>
+
+<h3 class="portfolio-name">Elegant Drapes</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="portfolio-item reveal">
+
+<img src="assets/gallery/model-makeup-01.jpg" alt="Fashion Makeup">
+
+<div class="portfolio-overlay">
+
+<div class="portfolio-info">
+
+<span class="portfolio-category">Fashion</span>
+
+<h3 class="portfolio-name">Editorial Beauty</h3>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- EXPERIENCE -->
+
+<section class="experience" id="experience">
+
+<div class="container">
+
+<div class="experience-header reveal">
+
+<span class="section-label" style="color:var(--gold); font-size:0.6rem; letter-spacing:0.4em; text-transform:uppercase; display:block; margin-bottom:1rem;">Process</span>
+
+<h2 class="experience-title">
+
+The Luxury
+
+<em>Experience</em>
+
+</h2>
+
+</div>
+
+<div class="timeline">
+
+<div class="timeline-item reveal">
+
+<div class="timeline-content">
+
+<span class="timeline-step">Step 01</span>
+
+<h3 class="timeline-title">Consultation</h3>
+
+<p class="timeline-text">We begin with a personal consultation to understand your vision, skin type, and the occasion. Every detail matters.</p>
+
+</div>
+
+<div class="timeline-dot"></div>
+
+<div class="timeline-number">01</div>
+
+</div>
+
+<div class="timeline-item reveal">
+
+<div class="timeline-content">
+
+<span class="timeline-step">Step 02</span>
+
+<h3 class="timeline-title">Customization</h3>
+
+<p class="timeline-text">A bespoke look is designed specifically for you, considering your outfit, lighting, and personal preferences.</p>
+
+</div>
+
+<div class="timeline-dot"></div>
+
+<div class="timeline-number">02</div>
+
+</div>
+
+<div class="timeline-item reveal">
+
+<div class="timeline-content">
+
+<span class="timeline-step">Step 03</span>
+
+<h3 class="timeline-title">Preparation</h3>
+
+<p class="timeline-text">Premium products and expert techniques prepare your canvas for a flawless, long-lasting finish.</p>
+
+</div>
+
+<div class="timeline-dot"></div>
+
+<div class="timeline-number">03</div>
+
+</div>
+
+<div class="timeline-item reveal">
+
+<div class="timeline-content">
+
+<span class="timeline-step">Step 04</span>
+
+<h3 class="timeline-title">Transformation</h3>
+
+<p class="timeline-text">Watch as your vision comes to life, with every detail perfected until you feel absolutely radiant.</p>
+
+</div>
+
+<div class="timeline-dot"></div>
+
+<div class="timeline-number">04</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TESTIMONIALS -->
+
+<section class="testimonials">
+
+<div class="container">
+
+<div class="testimonial-slider">
+
+<div class="testimonial-slide active">
+
+<p class="testimonial-text">
+
+"Hetal made me feel like the most beautiful version of myself on my wedding day. Her attention to detail and calming presence made all the difference."
+
+</p>
+
+<div class="testimonial-author">Priya Sharma</div>
+
+<div class="testimonial-role">Bride, Mumbai</div>
+
+</div>
+
+<div class="testimonial-slide">
+
+<p class="testimonial-text">
+
+"The most professional and talented artist I've worked with. My makeup lasted through 12 hours of shooting and looked flawless in every frame."
+
+</p>
+
+<div class="testimonial-author">Ananya Kapoor</div>
+
+<div class="testimonial-role">Fashion Model</div>
+
+</div>
+
+<div class="testimonial-slide">
+
+<p class="testimonial-text">
+
+"From the trial to the final look, everything was perfect. Hetal understood exactly what I wanted and delivered beyond expectations."
+
+</p>
+
+<div class="testimonial-author">Meera Patel</div>
+
+<div class="testimonial-role">Bride, Delhi</div>
+
+</div>
+
+<div class="testimonial-nav">
+
+<button class="testimonial-dot active" data-slide="0"></button>
+
+<button class="testimonial-dot" data-slide="1"></button>
+
+<button class="testimonial-dot" data-slide="2"></button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- BOOKING -->
+
+<section class="booking" id="contact">
+
+<div class="container">
+
+<div class="booking-content reveal">
+
+<span class="booking-label">Reserve Your Date</span>
+
+<h2 class="booking-title">
+
+Begin Your
+
+<em>Transformation</em>
+
+</h2>
+
+<p class="booking-text">
+
+Limited dates available for the upcoming season. Schedule your consultation today and let us create something extraordinary together.
+
+</p>
+
+<div class="booking-actions">
+
+<a href="#" class="btn btn-solid">
+
+<span>WhatsApp Consultation</span>
+
+</a>
+
+<a href="#" class="btn">
+
+<span>Call Directly</span>
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
 
 <div class="footer-brand">
 
 Beauty,
 
-<span>
-by Hetal.
-</span>
+<br>
+
+<span>by Hetal.</span>
 
 </div>
 
+<p class="footer-desc">
+
+Luxury makeup artistry and beauty styling for those who demand nothing but perfection.
+
+</p>
 
 </div>
-
 
 <div>
 
-
-<div class="footer-heading">
-
-Explore
-
-</div>
-
+<h4 class="footer-heading">Navigate</h4>
 
 <ul class="footer-links">
 
+<li><a href="#about">About</a></li>
 
-<li>
+<li><a href="#services">Services</a></li>
 
-<a href="index.html">
-Home
-</a>
+<li><a href="#portfolio">Portfolio</a></li>
 
-</li>
-
-
-<li>
-
-<a href="about.html">
-About Hetal
-</a>
-
-</li>
-
-
-<li>
-
-<a href="#services">
-Services
-</a>
-
-</li>
-
-
-<li>
-
-<a href="gallery.html">
-Gallery
-</a>
-
-</li>
-
+<li><a href="#contact">Contact</a></li>
 
 </ul>
 
-
 </div>
-
 
 <div>
 
-
-<div class="footer-heading">
-
-Connect
-
-</div>
-
+<h4 class="footer-heading">Services</h4>
 
 <ul class="footer-links">
 
+<li><a href="#">Bridal Makeup</a></li>
 
-<li>
+<li><a href="#">Hairstyling</a></li>
 
-<a href="#">
-Instagram
-</a>
+<li><a href="#">Saree Draping</a></li>
 
-</li>
-
-
-<li>
-
-<a href="#">
-WhatsApp
-</a>
-
-</li>
-
-
-<li>
-
-<a href="#">
-Call Hetal
-</a>
-
-</li>
-
+<li><a href="#">Editorial</a></li>
 
 </ul>
 
+</div>
+
+<div>
+
+<h4 class="footer-heading">Connect</h4>
+
+<ul class="footer-links">
+
+<li><a href="#">Instagram</a></li>
+
+<li><a href="#">Facebook</a></li>
+
+<li><a href="#">YouTube</a></li>
+
+<li><a href="#">Pinterest</a></li>
+
+</ul>
 
 </div>
 
-
 </div>
-
 
 <div class="footer-bottom">
 
+<p class="footer-copy">© 2026 Hetal Gala. All Rights Reserved.</p>
 
-<span>
+<div class="footer-social">
 
-© 2026 Hetal Gala.
-All Rights Reserved.
+<a href="#" class="social-link">IG</a>
 
-</span>
+<a href="#" class="social-link">FB</a>
 
-
-<span>
-
-Makeup • Hair • Draping • Beauty
-
-</span>
-
+<a href="#" class="social-link">YT</a>
 
 </div>
 
-
 </div>
 
+</div>
 
 </footer>
 
 
-<!-- ======================================================
-     WHATSAPP
-====================================================== -->
+<!-- WHATSAPP -->
 
-<a
+<a href="#" class="whatsapp-float" aria-label="WhatsApp">
 
-href="#"
-
-class="whatsapp"
-
-aria-label="WhatsApp Hetal"
-
-title="WhatsApp Hetal"
-
->
-
-
-<svg
-viewBox="0 0 24 24"
-fill="currentColor">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
 
 <path d="M12.04 2C6.55 2 2.1 6.45 2.1 11.94c0 1.75.46 3.46 1.32 4.97L2 22l5.22-1.37a9.9 9.9 0 004.82 1.23h.01c5.48 0 9.95-4.45 9.95-9.94A9.9 9.9 0 0012.04 2zm5.8 14.04c-.25.71-1.46 1.36-2.02 1.45-.52.1-1.18.14-1.9-.09-.44-.14-1-.33-1.72-.64-3.02-1.3-4.99-4.34-5.14-4.54-.15-.2-1.23-1.64-1.23-3.13 0-1.5.78-2.23 1.06-2.54.28-.3.61-.38.82-.38.2 0 .4 0 .58.01.19.01.44-.07.69.53.25.6.84 2.06.91 2.21.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.32.39-.46.52-.15.15-.3.31-.13.61.18.3.78 1.28 1.67 2.08 1.15 1.02 2.11 1.34 2.41 1.49.3.15.48.13.66-.08.18-.2.76-.89.96-1.19.2-.3.4-.25.68-.15.28.1 1.77.84 2.07.99.3.15.5.23.58.35.07.13.07.73-.18 1.47z"/>
 
 </svg>
-
 
 </a>
 
@@ -5029,741 +3880,346 @@ fill="currentColor">
 <script>
 
 /* =========================================================
-   LOADER
+   CURSOR
 ========================================================= */
 
-window.addEventListener(
-'load',
-()=>{
+const cursorDot = document.getElementById('cursorDot');
 
-setTimeout(
-()=>{
+const cursorRing = document.getElementById('cursorRing');
 
-document
-.getElementById('loader')
-.classList
-.add('hide');
+let mouseX = 0, mouseY = 0;
 
-},
-950
-);
+let ringX = 0, ringY = 0;
+
+
+document.addEventListener('mousemove', (e) => {
+
+mouseX = e.clientX;
+
+mouseY = e.clientY;
+
+cursorDot.style.left = mouseX + 'px';
+
+cursorDot.style.top = mouseY + 'px';
+
+});
+
+
+function animateCursor() {
+
+ringX += (mouseX - ringX) * 0.15;
+
+ringY += (mouseY - ringY) * 0.15;
+
+cursorRing.style.left = ringX + 'px';
+
+cursorRing.style.top = ringY + 'px';
+
+requestAnimationFrame(animateCursor);
 
 }
-);
+
+animateCursor();
+
+
+document.querySelectorAll('a, button, .service-item, .portfolio-item').forEach(el => {
+
+el.addEventListener('mouseenter', () => {
+
+cursorRing.classList.add('hovered');
+
+});
+
+el.addEventListener('mouseleave', () => {
+
+cursorRing.classList.remove('hovered');
+
+});
+
+});
 
 
 /* =========================================================
-   HEADER
+   PRELOADER
 ========================================================= */
 
-const header =
-document.getElementById('header');
+const preloader = document.getElementById('preloader');
+
+const counter = document.getElementById('preloaderCounter');
+
+let progress = 0;
 
 
-function updateHeader(){
+const interval = setInterval(() => {
 
-if(window.scrollY > 60){
+progress += Math.random() * 15;
 
-header.classList.add(
-'scrolled'
-);
+if (progress >= 100) {
+
+progress = 100;
+
+clearInterval(interval);
+
+setTimeout(() => {
+
+preloader.classList.add('hide');
+
+}, 500);
 
 }
 
-else{
+counter.textContent = Math.floor(progress) + '%';
 
-header.classList.remove(
-'scrolled'
-);
-
-}
-
-}
-
-
-window.addEventListener(
-'scroll',
-updateHeader
-);
-
-
-updateHeader();
+}, 100);
 
 
 /* =========================================================
-   MOBILE MENU
+   NAVIGATION
 ========================================================= */
 
-const menuBtn =
-document.getElementById(
-'menuBtn'
-);
+const nav = document.getElementById('nav');
+
+const menuToggle = document.getElementById('menuToggle');
+
+const navLinks = document.getElementById('navLinks');
 
 
-const navLinks =
-document.getElementById(
-'navLinks'
-);
+window.addEventListener('scroll', () => {
 
+if (window.scrollY > 100) {
 
-menuBtn.addEventListener(
-'click',
-()=>{
+nav.classList.add('scrolled');
 
-menuBtn
-.classList
-.toggle('active');
+} else {
 
-
-navLinks
-.classList
-.toggle('open');
-
-
-header
-.classList
-.toggle('menu-active');
-
-
-document.body
-.classList
-.toggle('menu-open');
+nav.classList.remove('scrolled');
 
 }
-);
+
+});
 
 
-document
-.querySelectorAll(
-'.nav-links a'
-)
-.forEach(
-link=>{
+menuToggle.addEventListener('click', () => {
 
-link.addEventListener(
-'click',
-()=>{
+menuToggle.classList.toggle('active');
 
-menuBtn
-.classList
-.remove('active');
+navLinks.classList.toggle('open');
+
+document.body.classList.toggle('menu-open');
+
+});
 
 
-navLinks
-.classList
-.remove('open');
+navLinks.querySelectorAll('a').forEach(link => {
+
+link.addEventListener('click', () => {
+
+menuToggle.classList.remove('active');
+
+navLinks.classList.remove('open');
+
+document.body.classList.remove('menu-open');
+
+});
+
+});
 
 
-header
-.classList
-.remove('menu-active');
+/* =========================================================
+   HERO PARTICLES
+========================================================= */
+
+const particlesContainer = document.getElementById('heroParticles');
+
+const particleCount = window.innerWidth < 768 ? 15 : 30;
 
 
-document.body
-.classList
-.remove('menu-open');
+for (let i = 0; i < particleCount; i++) {
+
+const particle = document.createElement('div');
+
+particle.className = 'particle';
+
+const size = Math.random() * 4 + 1;
+
+const left = Math.random() * 100;
+
+const duration = Math.random() * 15 + 10;
+
+const delay = Math.random() * -20;
+
+const opacity = Math.random() * 0.5 + 0.2;
+
+particle.style.left = left + '%';
+
+particle.style.setProperty('--size', size + 'px');
+
+particle.style.setProperty('--duration', duration + 's');
+
+particle.style.setProperty('--delay', delay + 's');
+
+particle.style.setProperty('--opacity', opacity);
+
+particlesContainer.appendChild(particle);
 
 }
-);
-
-}
-);
 
 
 /* =========================================================
    SCROLL REVEALS
 ========================================================= */
 
-const revealElements =
+const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
 
-document.querySelectorAll(
+const revealObserver = new IntersectionObserver((entries) => {
 
-'.reveal, .reveal-left, .reveal-right'
+entries.forEach((entry, index) => {
 
-);
+if (entry.isIntersecting) {
 
+setTimeout(() => {
 
-const observer =
+entry.target.classList.add('active');
 
-new IntersectionObserver(
+}, index * 100);
 
-entries=>{
-
-
-entries.forEach(
-
-(entry,index)=>{
-
-
-if(entry.isIntersecting){
-
-
-setTimeout(
-
-()=>{
-
-entry.target
-.classList
-.add('active');
-
-},
-
-index * 70
-
-);
-
-
-observer.unobserve(
-entry.target
-);
+revealObserver.unobserve(entry.target);
 
 }
 
+});
 
-}
+}, {
 
-);
+threshold: 0.1,
 
+rootMargin: '0px 0px -50px 0px'
 
-},
-
-{
-
-threshold:.12,
-
-rootMargin:
-'0px 0px -50px 0px'
-
-}
-
-);
+});
 
 
-revealElements
-.forEach(
-
-element=>{
-
-observer.observe(
-element
-);
-
-}
-
-);
+revealElements.forEach(el => revealObserver.observe(el));
 
 
 /* =========================================================
-   ABOUT IMAGE PARALLAX
+   COUNTER ANIMATION
 ========================================================= */
 
-const aboutImage =
+const statNumbers = document.querySelectorAll('.stat-number');
 
-document.querySelector(
-'.about-image img'
-);
+const counterObserver = new IntersectionObserver((entries) => {
 
+entries.forEach(entry => {
 
-window.addEventListener(
-'scroll',
-()=>{
+if (entry.isIntersecting) {
 
+const target = parseInt(entry.target.dataset.count);
 
-if(!aboutImage)
-return;
+let current = 0;
 
+const increment = target / 50;
 
-const parent =
+const timer = setInterval(() => {
 
-aboutImage
-.parentElement
-.getBoundingClientRect();
+current += increment;
 
+if (current >= target) {
 
-const windowHeight =
+entry.target.textContent = target + '+';
 
-window.innerHeight;
+clearInterval(timer);
 
+} else {
 
-if(
-
-parent.top < windowHeight
-
-&&
-
-parent.bottom > 0
-
-){
-
-
-const progress =
-
-(windowHeight - parent.top)
-
-/
-
-(windowHeight + parent.height);
-
-
-const movement =
-
--12 + progress * 18;
-
-
-aboutImage.style.transform =
-
-`translateY(${movement}%)`;
+entry.target.textContent = Math.floor(current);
 
 }
 
+}, 30);
+
+counterObserver.unobserve(entry.target);
 
 }
 
-);
+});
+
+}, { threshold: 0.5 });
+
+
+statNumbers.forEach(stat => counterObserver.observe(stat));
 
 
 /* =========================================================
-   COSMETIC POWDER PARTICLES
+   TESTIMONIAL SLIDER
 ========================================================= */
 
-const beautyFx =
+const slides = document.querySelectorAll('.testimonial-slide');
 
-document.getElementById(
-'beautyFx'
-);
+const dots = document.querySelectorAll('.testimonial-dot');
 
+let currentSlide = 0;
 
-if(beautyFx){
 
+function goToSlide(index) {
 
-const particleCount =
+slides[currentSlide].classList.remove('active');
 
-window.innerWidth < 700
+dots[currentSlide].classList.remove('active');
 
-?
+currentSlide = index;
 
-20
+slides[currentSlide].classList.add('active');
 
-:
-
-42;
-
-
-for(
-
-let i=0;
-
-i < particleCount;
-
-i++
-
-){
-
-
-const particle =
-
-document.createElement(
-'span'
-);
-
-
-particle.className =
-'powder';
-
-
-const size =
-
-Math.random() * 8 + 2;
-
-
-const left =
-
-Math.random() * 100;
-
-
-const duration =
-
-Math.random() * 9 + 9;
-
-
-const delay =
-
-Math.random() * -15;
-
-
-const drift =
-
-(
-
-Math.random() * 180 - 90
-
-)
-
-+ 'px';
-
-
-const opacity =
-
-Math.random() * .32 + .07;
-
-
-particle.style.left =
-
-left + '%';
-
-
-particle.style.bottom =
-
-(
-
-Math.random() * 35 - 10
-
-)
-
-+ '%';
-
-
-particle.style.setProperty(
-
-'--size',
-
-size + 'px'
-
-);
-
-
-particle.style.setProperty(
-
-'--duration',
-
-duration + 's'
-
-);
-
-
-particle.style.setProperty(
-
-'--delay',
-
-delay + 's'
-
-);
-
-
-particle.style.setProperty(
-
-'--drift',
-
-drift
-
-);
-
-
-particle.style.setProperty(
-
-'--opacity',
-
-opacity
-
-);
-
-
-beautyFx.appendChild(
-particle
-);
-
+dots[currentSlide].classList.add('active');
 
 }
 
 
-}
+dots.forEach((dot, index) => {
+
+dot.addEventListener('click', () => goToSlide(index));
+
+});
+
+
+setInterval(() => {
+
+const next = (currentSlide + 1) % slides.length;
+
+goToSlide(next);
+
+}, 5000);
 
 
 /* =========================================================
-   HERO CURSOR GLOW
+   SMOOTH SCROLL
 ========================================================= */
 
-const hero =
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
-document.getElementById(
-'hero'
-);
+anchor.addEventListener('click', function(e) {
 
+e.preventDefault();
 
-const heroGlow =
+const target = document.querySelector(this.getAttribute('href'));
 
-document.getElementById(
-'heroCursorGlow'
-);
+if (target) {
 
+target.scrollIntoView({
 
-if(hero && heroGlow){
+behavior: 'smooth',
 
+block: 'start'
 
-hero.addEventListener(
-
-'mousemove',
-
-event=>{
-
-
-const rect =
-
-hero
-.getBoundingClientRect();
-
-
-heroGlow.style.left =
-
-(
-
-event.clientX
--
-rect.left
-
-)
-
-+ 'px';
-
-
-heroGlow.style.top =
-
-(
-
-event.clientY
--
-rect.top
-
-)
-
-+ 'px';
-
+});
 
 }
 
-);
+});
 
-
-}
-
-
-/* =========================================================
-   HERO PARALLAX
-========================================================= */
-
-if(
-
-hero
-
-&&
-
-window.matchMedia(
-'(pointer: fine)'
-).matches
-
-){
-
-
-const title =
-
-hero.querySelector(
-'.hero-title'
-);
-
-
-const brush =
-
-hero.querySelector(
-'.makeup-brush'
-);
-
-
-hero.addEventListener(
-
-'mousemove',
-
-event=>{
-
-
-const rect =
-
-hero.getBoundingClientRect();
-
-
-const x =
-
-(
-
-event.clientX
--
-rect.left
-
-)
-
-/
-
-rect.width
-
--
-
-.5;
-
-
-const y =
-
-(
-
-event.clientY
--
-rect.top
-
-)
-
-/
-
-rect.height
-
--
-
-.5;
-
-
-if(title){
-
-
-title.style.transform =
-
-`translate3d(
-${x * 8}px,
-${y * 5}px,
-0
-)`;
-
-}
-
-
-if(brush){
-
-
-brush.style.marginRight =
-
-`${x * 18}px`;
-
-
-brush.style.marginTop =
-
-`${y * 14}px`;
-
-}
-
-
-}
-
-);
-
-
-hero.addEventListener(
-
-'mouseleave',
-
-()=>{
-
-
-if(title){
-
-title.style.transform =
-
-'translate3d(0,0,0)';
-
-}
-
-
-if(brush){
-
-brush.style.marginRight =
-'0';
-
-brush.style.marginTop =
-'0';
-
-}
-
-
-}
-
-);
-
-
-}
-
-
-/* =========================================================
-   SERVICE MOUSE EFFECT
-========================================================= */
-
-document
-.querySelectorAll(
-'.service'
-)
-.forEach(
-
-service=>{
-
-
-service.addEventListener(
-
-'mousemove',
-
-event=>{
-
-
-const rect =
-
-service
-.getBoundingClientRect();
-
-
-const x =
-
-event.clientX
--
-rect.left;
-
-
-service.style.background =
-
-`radial-gradient(
-circle at ${x}px 50%,
-rgba(178,139,93,.09),
-rgba(255,255,255,.015) 35%
-)`;
-
-}
-
-
-);
-
-
-service.addEventListener(
-
-'mouseleave',
-
-()=>{
-
-service.style.background =
-'';
-
-}
-
-);
-
-
-}
-
-);
+});
 
 </script>
-
 
 </body>
 
